@@ -9,7 +9,7 @@ export function useSanity() {
   useEffect(() => {
     setSanity("");
 
-    // make a new api call any time `breed` or `count` changes
+    // make a new api call any time
     axios
       .get(`https://farm-fresh-produce.herokuapp.com/`)
       .then(result => {
@@ -20,6 +20,5 @@ export function useSanity() {
       });
   }, []);
 
-  // we don't use `setImages` in App.js, but it's nice to return it just in case
   return [sanity, setSanity];
 }

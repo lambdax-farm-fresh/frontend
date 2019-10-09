@@ -1,5 +1,7 @@
 import React from "react";
 
+import Navbar from "../Navbar/Navbar";
+
 import { useSanity } from "../../hooks/api";
 
 const Layout = props => {
@@ -7,7 +9,7 @@ const Layout = props => {
 
   return (
     <>
-      <h1>Layout</h1>
+      <Navbar />
       {sanity}
     </>
   );
