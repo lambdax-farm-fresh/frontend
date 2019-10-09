@@ -1,16 +1,14 @@
 import React from "react";
 
-const axios = require("axios");
+import { useSanity } from "../../hooks/api";
 
 const Layout = props => {
-  axios
-    .get("https://farm-fresh-produce.herokuapp.com/")
-    .then(res => console.log(res.data))
-    .catch(err => console.error(err));
+  const [sanity] = useSanity("");
 
   return (
     <>
       <h1>Layout</h1>
+      {sanity}
     </>
   );
 };
