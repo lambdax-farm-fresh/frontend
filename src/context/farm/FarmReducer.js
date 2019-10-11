@@ -9,10 +9,7 @@ import { GET_FARMS,
     SUCC_UPD_FARM,
          DEL_FARM,
     FAIL_DEL_FARM,
-    SUCC_DEL_FARM,
-         LOG_FARM,
-    FAIL_LOG_FARM,
-    SUCC_LOG_FARM } from '../types';
+    SUCC_DEL_FARM } from '../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -78,22 +75,6 @@ export default (state, action) => {
         return {
             ...state,
             message: 'Farm DEL success',
-            farm: action.payload
-        };
-    case LOG_FARM:
-        return {
-            ...state,
-            message: 'LOGing a new farm'
-        };
-    case FAIL_LOG_FARM:
-        return {
-            ...state,
-            message: 'Failed to LOG farm'
-        };
-    case SUCC_LOG_FARM:
-        return {
-            ...state,
-            message: 'Farm LOG success',
             farm: action.payload
         };
     default:

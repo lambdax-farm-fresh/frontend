@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
-import farmReducer from "./farmReducer";
-import farmContext from "./farmContext";
+import farmReducer from "./FarmReducer";
+import farmContext from "./FarmContext";
 import { GET_FARMS,
     FAIL_GET_FARMS,
     SUCC_GET_FARMS,
