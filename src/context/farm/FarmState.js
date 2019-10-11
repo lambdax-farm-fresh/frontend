@@ -25,28 +25,28 @@ const FarmState = props => {
 
   const getFarms = () => {
     dispatch({ type: GET_FARMS });
-    Axios.get('http://localhost:3000/farms/')
+    Axios.get('https://farm-fresh-produce.herokuapp.com/farms/')
          .then(res => dispatch({ type: SUCC_GET_FARMS, payload: res.data }))
          .catch(err => dispatch({ type: FAIL_GET_FARMS }));
   }
 
   const addFarm = (farmObj) => {
     dispatch({ type: ADD_FARM });
-    Axios.post('http://localhost:3000/auth/register', farmObj)
+    Axios.post('https://farm-fresh-produce.herokuapp.com/auth/register', farmObj)
          .then(res => dispatch({ type: SUCC_ADD_FARM, payload: res.data }))
          .catch(err => dispatch({ type: FAIL_ADD_FARM }));
   }
 
   const updateFarm = (farmObj) => {
     dispatch({ type: UPD_FARM });
-    Axios.put(`http://localhost:3000/farms/${farmObj.id}`, farmObj)
+    Axios.put(`https://farm-fresh-produce.herokuapp.com/farms/${farmObj.id}`, farmObj)
          .then(res => dispatch({ type: SUCC_UPD_FARM, payload: res.data }))
          .catch(err => dispatch({ type: FAIL_UPD_FARM }));
   }
 
   const deleteFarm = (farm_id) => {
       dispatch({ type: DEL_FARM });
-      Axios.delete(`http://localhost:3000/farms/${farm_id}`)
+      Axios.delete(`https://farm-fresh-produce.herokuapp.com/farms/${farm_id}`)
            .then(res => dispatch({ type: SUCC_DEL_FARM, payload: res.data}))
            .catch(err => dispatch({ type: FAIL_DEL_FARM, error: err }))
   }
