@@ -32,7 +32,7 @@ const FarmState = props => {
 
   const addFarm = (farmObj) => {
     dispatch({ type: ADD_FARM });
-    Axios.post('https://farm-fresh-produce.herokuapp.com/auth/register', farmObj)
+    Axios.post('https://farm-fresh-produce.herokuapp.com/farms/', farmObj)
          .then(res => dispatch({ type: SUCC_ADD_FARM, payload: res.data }))
          .catch(err => dispatch({ type: FAIL_ADD_FARM }));
   }
