@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import GoogleSigninFunc from "../../firebase/Google";
+import GoogleSigninFunc from "../../../firebase/Google";
 
 const SignedOutLinks = () => {
   return (
