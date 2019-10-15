@@ -1,15 +1,22 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+import GoogleSigninFunc from "../../firebase/Google";
+
 const SignedOutLinks = () => {
   return (
     <div>
       <ul>
         <li>
-          <NavLink to="/">Register</NavLink>
+          <NavLink to="/">
+            <span>Register</span>
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/">Sign In</NavLink>
+          <NavLink to="/">
+            <span>Sign In</span>
+            <button onClick={GoogleSigninFunc}>Google</button>
+          </NavLink>
         </li>
       </ul>
     </div>

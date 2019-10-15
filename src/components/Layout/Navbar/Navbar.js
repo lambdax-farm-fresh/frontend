@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import SignedOutLinks from "./SignedOutLinks";
 import SignedInLinks from "./SignedInLinks";
 
+console.log(process.env);
+
 const Navbar = () => {
   return (
     <nav className="navbar">

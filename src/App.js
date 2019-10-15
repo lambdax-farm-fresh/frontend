@@ -3,13 +3,19 @@ import { BrowserRouter } from "react-router-dom";
 
 import Layout from "./components/Layout/Layout";
 
+//Context State
+
+import FarmState from "./context/farm/FarmState";
+
 function App() {
   return (
-    <BrowserRouter>
-      <div className="App">
-        <Layout />
-      </div>
-    </BrowserRouter>
+    <div className="App">
+      <BrowserRouter>
+        <FarmState>
+          <Layout />
+        </FarmState>
+      </BrowserRouter>
+    </div>
   );
 }
 
