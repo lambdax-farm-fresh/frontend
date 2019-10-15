@@ -1,17 +1,22 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
+import SignedOutLinks from "./SignedOutLinks";
+import SignedInLinks from "./SignedInLinks";
 
 const Navbar = () => {
   return (
     <nav className="navbar">
       {/* Left Nav */}
       <div className="left-nav">
-        <h1>Farm Fresh Produce</h1>
+        <Link to="/" className="logo">
+          Farm Fresh Produce
+        </Link>
       </div>
       {/* Right Nav */}
       <div className="right-nav">
-        <span>Sign In</span>
-        <span>Register</span>
-        <span>Log Out</span>
+        <SignedInLinks />
+        <SignedOutLinks />
       </div>
     </nav>
   );
