@@ -1,6 +1,6 @@
 import React from "react";
 
-import Navbar from "../Navbar/Navbar";
+import Navbar from "./Navbar/Navbar";
 
 import { useSanity } from "../../hooks/api";
 import FarmAdd from "../Test/FarmAdd";

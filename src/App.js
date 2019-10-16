@@ -1,17 +1,20 @@
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
 
 import Layout from "./components/Layout/Layout";
 
 //Context State
 
-import FarmState from './context/farm/FarmState';
+import FarmState from "./context/farm/FarmState";
 
 function App() {
   return (
     <div className="App">
-      <FarmState>
-        <Layout />
-      </FarmState>
+      <BrowserRouter>
+        <FarmState>
+          <Layout />
+        </FarmState>
+      </BrowserRouter>
     </div>
   );
 }
