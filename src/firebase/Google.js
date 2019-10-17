@@ -12,10 +12,8 @@ export default function GoogleLoginFunc() {
     const Users = useContext(UserContext);
 
     const GoogleLoginFunc = () => {
-        firebase.auth().signInWithPopup(provider).then((result) => {
+        firebase.auth().signInWithPopup(provider).then(async (result) => {
             var user = result.user.providerData[0];
-
-            console.log(user, result.uid)
 
             var userObj = {
                 firstName: 'Farm Fresh User',
@@ -25,7 +23,18 @@ export default function GoogleLoginFunc() {
                 picture: user.photoURL
             }
 
-            Users.addUser(userObj)
+            const userCheck = await Users.findByEmail(userObj.email)
+
+            if(userCheck.status) {
+                const currentUser = userCheck;
+                const loginObj = {
+                    email: currentUser.email,
+                    firebaseId: currentUser.firebaseId
+                }
+            } else {
+                Users.addUser(userObj)
+            }
+
         }).catch((err) => {
             var code = err.code;
             var message = err.message;

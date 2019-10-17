@@ -12,10 +12,7 @@ import { GET_USERS,
     SUCC_UPD_USER,
          DEL_USER,
     FAIL_DEL_USER,
-    SUCC_DEL_USER,
-         LOG_USER,
-    FAIL_LOG_USER,
-    SUCC_LOG_USER } from '../types';
+    SUCC_DEL_USER } from '../types';
 
 import Axios from 'axios';
 
@@ -26,18 +23,11 @@ const UserState = props => {
 
   const [state, dispatch] = useReducer(userReducer, initialState);
 
-//   const getUsers = (id) => {
-//     dispatch({ type: GET_USERS });
-//     Axios.get('https://farm-fresh-produce.herokuapp.com/users/' + id)
-//          .then(res => dispatch({ type: SUCC_GET_USERS, payload: res.data }))
-//          .catch(err => dispatch({ type: FAIL_GET_USERS }));
-//   }
-
-  const loginUser = async (userObj) => {
-      dispatch({ type: LOG_USER });
-      await Axios.post('https://farm-fresh-produce.herokuapp.com/auth/login', userObj)
-        .then(res => dispatch({ type: SUCC_LOG_USER, payload: res.data }))
-        .catch(err => dispatch({ type: FAIL_LOG_USER }));
+  const findByEmail = (email) => {
+    dispatch({ type: GET_USERS });
+    Axios.get('http://localhost:3000/users/email/' + email)
+         .then(res => dispatch({ type: SUCC_GET_USERS, payload: res.data }))
+         .catch(err => dispatch({ type: FAIL_GET_USERS }));
   }
 
   const addUser = (userObj) => {
@@ -69,7 +59,7 @@ const UserState = props => {
         addUser,
         updateUser,
         deleteUser,
-        loginUser
+        findByEmail
       }}
     >
       {props.children}
