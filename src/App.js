@@ -6,14 +6,17 @@ import Layout from "./components/Layout/Layout";
 //Context State
 
 import FarmState from "./context/farm/FarmState";
+import UserState from "./context/user/UserState";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <FarmState>
-          <Layout />
-        </FarmState>
+        <UserState>
+          <FarmState>
+            <Layout />
+          </FarmState>
+        </UserState>
       </BrowserRouter>
     </div>
   );

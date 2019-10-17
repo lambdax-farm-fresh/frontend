@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
-import userReducer from "./userReducer";
-import userContext from "./userContext";
+import userReducer from "./UserReducer";
+import userContext from "./UserContext";
 import { GET_USERS,
     FAIL_GET_USERS,
     SUCC_GET_USERS,
