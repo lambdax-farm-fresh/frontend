@@ -25,7 +25,7 @@ const UserState = props => {
 
   const findByEmail = (email) => {
     dispatch({ type: GET_USERS });
-    Axios.get('http://localhost:3000/users/email/' + email)
+    Axios.get('https://farm-fresh-produce.herokuapp.com/users/email/' + email)
          .then(res => dispatch({ type: SUCC_GET_USERS, payload: res.data }))
          .catch(err => dispatch({ type: FAIL_GET_USERS }));
   }
