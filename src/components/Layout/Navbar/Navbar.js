@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styled from "@emotion/styled";
 
 import SignedOutLinks from "./SignedOutLinks";
 import SignedInLinks from "./SignedInLinks";
@@ -7,20 +8,42 @@ import SignedInLinks from "./SignedInLinks";
 console.log(process.env);
 
 const Navbar = () => {
+  const Nav = styled.nav`
+    background-color: orange;
+    height: 60px;
+    width: "100%";
+    margin: "0px";
+  `;
+
+  const LeftNav = styled.div`
+    float: left;
+    text-decoration: none;
+    list-style: none;
+  `;
+  const RightNav = styled.div`
+    float: right;
+  `;
+
+  const StyledLink = styled(Link)`
+    text-decoration: none;
+    font-size: 2rem;
+    background-color: green;
+    padding: 20px;
+    margin: 10px;
+  `;
+
   return (
-    <nav className="navbar">
+    <Nav>
       {/* Left Nav */}
-      <div className="left-nav">
-        <Link to="/" className="logo">
-          Farm Fresh Produce
-        </Link>
-      </div>
+      <LeftNav>
+        <StyledLink to="/">Farm Fresh Produce</StyledLink>
+      </LeftNav>
       {/* Right Nav */}
-      <div className="right-nav">
+      <RightNav>
         <SignedInLinks />
         <SignedOutLinks />
-      </div>
-    </nav>
+      </RightNav>
+    </Nav>
   );
 };
 
