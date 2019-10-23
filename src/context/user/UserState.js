@@ -1,9 +1,9 @@
 import React, { useReducer } from "react";
 import userReducer from "./UserReducer";
 import userContext from "./UserContext";
-import { GET_USERS,
-    FAIL_GET_USERS,
-    SUCC_GET_USERS,
+import { GET_USER,
+    FAIL_GET_USER,
+    SUCC_GET_USER,
          ADD_USER,
     FAIL_ADD_USER,
     SUCC_ADD_USER,
@@ -18,16 +18,16 @@ import Axios from 'axios';
 
 const UserState = props => {
   const initialState = {
-    users: null
+    user: null
   };
 
   const [state, dispatch] = useReducer(userReducer, initialState);
 
-  const findByEmail = (email) => {
-    dispatch({ type: GET_USERS });
-    Axios.get('https://farm-fresh-produce.herokuapp.com/users/email/' + email)
-         .then(res => dispatch({ type: SUCC_GET_USERS, payload: res.data }))
-         .catch(err => dispatch({ type: FAIL_GET_USERS }));
+  const getUser = (firebaseId) => {
+    dispatch({ type: GET_USER });
+    Axios.get(`http://farm-fresh-produce.herokuapp.com/users/${firebaseId}`)
+         .then(res => dispatch({ type: SUCC_GET_USER, payload: res.data }))
+         .catch(err => dispatch({ type: FAIL_GET_USER }));
   }
 
   const addUser = (userObj) => {
@@ -56,10 +56,10 @@ const UserState = props => {
     <userContext.Provider
       value={{
         state: state,
+        getUser,
         addUser,
         updateUser,
-        deleteUser,
-        findByEmail
+        deleteUser
       }}
     >
       {props.children}

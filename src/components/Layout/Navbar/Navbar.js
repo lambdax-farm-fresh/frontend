@@ -49,13 +49,7 @@ const Navbar = () => {
         <StyledLink to="/">Farm Fresh Produce</StyledLink>
       </LeftNav>
       {/* Right Nav */}
-<<<<<<< HEAD
       <RightNav>
-=======
-      <div className="right-nav">
-
-
->>>>>>> 0238d40674f89c21fc57900c4f606961aec2f742
         <SignedInLinks />
         <SignedOutLinks />
       </RightNav>

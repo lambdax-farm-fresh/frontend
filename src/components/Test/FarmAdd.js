@@ -8,7 +8,9 @@ export default function FarmAdd(props) {
 
     return (
         <div>
-            {farmContext.state ? <div> Context Connected. </div> : <div> Context Not Working </div>}
+            {/* <form onSubmit={}>
+                <input type="text" placeholder="Farm Name"></input>
+            </form> */}
         </div>
     )
 }
