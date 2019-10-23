@@ -1,6 +1,6 @@
-import { GET_USERS,
-    FAIL_GET_USERS,
-    SUCC_GET_USERS,
+import { GET_USER,
+    FAIL_GET_USER,
+    SUCC_GET_USER,
          ADD_USER,
     FAIL_ADD_USER,
     SUCC_ADD_USER,
@@ -16,21 +16,21 @@ import { GET_USERS,
 
 export default (state, action) => {
   switch (action.type) {
-    case GET_USERS:
+    case GET_USER:
         return {
             ...state,
-            message: 'Getting users'
+            message: 'Getting user'
         };
-    case FAIL_GET_USERS:
+    case FAIL_GET_USER:
         return {
             ...state,
-            message: 'Failed to fetch users'
+            message: 'Failed to fetch user'
         };
-    case SUCC_GET_USERS:
+    case SUCC_GET_USER:
         return {
             ...state,
             message: 'User fetch success',
-            users: action.payload
+            user: action.payload
         };
     case ADD_USER:
         return {

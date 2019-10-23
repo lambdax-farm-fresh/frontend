@@ -1,7 +1,7 @@
 //USERS
-export const GET_USERS = 'GET_USERS';
-export const FAIL_GET_USERS = 'FAIL_GET_USERS';
-export const SUCC_GET_USERS = 'SUCC_GET_USERS';
+export const GET_USER = 'GET_USER';
+export const FAIL_GET_USER = 'FAIL_GET_USER';
+export const SUCC_GET_USER = 'SUCC_GET_USER';
 
 export const ADD_USER = 'ADD_USER';
 export const FAIL_ADD_USER = 'FAIL_ADD_USER';

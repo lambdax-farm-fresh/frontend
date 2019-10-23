@@ -23,14 +23,12 @@ export default function GoogleLoginFunc() {
                 picture: user.photoURL
             }
 
-            const userCheck = await Users.findByEmail(userObj.email)
+            console.log(userObj)
 
-            if(userCheck.status) {
-                const currentUser = userCheck;
-                const loginObj = {
-                    email: currentUser.email,
-                    firebaseId: currentUser.firebaseId
-                }
+            const userCheck = await Users.getUser(userObj.firebaseId)
+
+            if(userCheck) {
+                console.log("user found")
             } else {
                 Users.addUser(userObj)
             }
