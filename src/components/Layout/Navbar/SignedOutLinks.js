@@ -15,7 +15,7 @@ const SignedOutLinks = () => {
         <li>
           <NavLink to="/">
             <span>Sign In</span>
-            <button onClick={GoogleSigninFunc}>Google</button>
+            <GoogleSigninFunc />
           </NavLink>
         </li>
       </ul>
