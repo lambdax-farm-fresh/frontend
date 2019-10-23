@@ -34,7 +34,7 @@ const SignedOutLinks = () => {
         <Li>
           <StyledNavLink to="/">
             <span>Sign In</span>
-            <button onClick={GoogleSigninFunc}>Google</button>
+            <GoogleSigninFunc />
           </StyledNavLink>
         </Li>
       </Ul>

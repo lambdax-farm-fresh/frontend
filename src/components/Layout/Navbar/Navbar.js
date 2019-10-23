@@ -5,7 +5,8 @@ import styled from "@emotion/styled";
 import SignedOutLinks from "./SignedOutLinks";
 import SignedInLinks from "./SignedInLinks";
 
-console.log(process.env);
+// import firebase from "../../../firebase/firebase";
+// import "firebase/auth";
 
 const Navbar = () => {
   const Nav = styled.nav`
@@ -32,6 +33,15 @@ const Navbar = () => {
     margin: 10px;
   `;
 
+  // const curUser = firebase.auth().onAuthStateChanged(function(user) {
+  //   if(user){
+  //     console.log("Firebase User FOUND")
+  //   } else {
+  //     console.log("NO FIREBASE USER.")
+  //   }
+  // }
+  // )
+
   return (
     <Nav>
       {/* Left Nav */}
@@ -39,7 +49,13 @@ const Navbar = () => {
         <StyledLink to="/">Farm Fresh Produce</StyledLink>
       </LeftNav>
       {/* Right Nav */}
+<<<<<<< HEAD
       <RightNav>
+=======
+      <div className="right-nav">
+
+
+>>>>>>> 0238d40674f89c21fc57900c4f606961aec2f742
         <SignedInLinks />
         <SignedOutLinks />
       </RightNav>
