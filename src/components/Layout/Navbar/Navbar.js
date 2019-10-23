@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import styled from "@emotion/styled";
 
 import SignedOutLinks from "./SignedOutLinks";
 import SignedInLinks from "./SignedInLinks";
@@ -8,6 +9,29 @@ import SignedInLinks from "./SignedInLinks";
 // import "firebase/auth";
 
 const Navbar = () => {
+  const Nav = styled.nav`
+    background-color: orange;
+    height: 60px;
+    width: "100%";
+    margin: "0px";
+  `;
+
+  const LeftNav = styled.div`
+    float: left;
+    text-decoration: none;
+    list-style: none;
+  `;
+  const RightNav = styled.div`
+    float: right;
+  `;
+
+  const StyledLink = styled(Link)`
+    text-decoration: none;
+    font-size: 2rem;
+    background-color: green;
+    padding: 20px;
+    margin: 10px;
+  `;
 
   // const curUser = firebase.auth().onAuthStateChanged(function(user) {
   //   if(user){
@@ -19,21 +43,23 @@ const Navbar = () => {
   // )
 
   return (
-    <nav className="navbar">
+    <Nav>
       {/* Left Nav */}
-      <div className="left-nav">
-        <Link to="/" className="logo">
-          Farm Fresh Produce
-        </Link>
-      </div>
+      <LeftNav>
+        <StyledLink to="/">Farm Fresh Produce</StyledLink>
+      </LeftNav>
       {/* Right Nav */}
+<<<<<<< HEAD
+      <RightNav>
+=======
       <div className="right-nav">
 
 
+>>>>>>> 0238d40674f89c21fc57900c4f606961aec2f742
         <SignedInLinks />
         <SignedOutLinks />
-      </div>
-    </nav>
+      </RightNav>
+    </Nav>
   );
 };
 
