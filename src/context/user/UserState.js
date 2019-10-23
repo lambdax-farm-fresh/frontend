@@ -16,8 +16,10 @@ import { GET_USER,
 
 import Axios from 'axios';
 
-const address = process.env.NODE_ENV === 'development' ? 'http://localhost:8181' : 'https://farm-fresh-produce.herokuapp.com';
+// const address = process.env.NODE_ENV === 'development' ? 'http://localhost:8181' : 'https://farm-fresh-produce.herokuapp.com';
 
+  const address = 'https://farm-fresh-produce.herokuapp.com';
+  
 const UserState = props => {
   const initialState = {
     user: null
