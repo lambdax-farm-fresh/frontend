@@ -16,22 +16,22 @@ import { GET_USER,
 
 export default (state, action) => {
   switch (action.type) {
-    case GET_USER:
-        return {
-            ...state,
-            message: 'Getting user'
-        };
-    case FAIL_GET_USER:
-        return {
-            ...state,
-            message: 'Failed to fetch user'
-        };
-    case SUCC_GET_USER:
-        return {
-            ...state,
-            message: 'User fetch success',
-            user: action.payload
-        };
+    // case GET_USER:
+    //     return {
+    //         ...state,
+    //         message: 'Getting user'
+    //     };
+    // case FAIL_GET_USER:
+    //     return {
+    //         ...state,
+    //         message: 'Failed to fetch user'
+    //     };
+    // case SUCC_GET_USER:
+    //     return {
+    //         ...state,
+    //         message: 'User fetch success',
+    //         user: action.payload
+    //     };
     case ADD_USER:
         return {
             ...state,
