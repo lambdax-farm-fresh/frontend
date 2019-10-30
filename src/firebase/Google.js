@@ -23,15 +23,24 @@ export default function GoogleLoginFunc() {
                 picture: user.photoURL
             }
 
-            console.log(userObj)
+            const nice = await fetch(`http://localhost:8181/users/${userObj.firebaseId}`)
+                                    .then(res => res.data)
+                                    .catch(err => console.log('ERROR', err))
 
-            const userCheck = await Users.getUser(userObj.firebaseId)
+            console.log(nice)
 
-            if(userCheck) {
-                console.log("user found")
-            } else {
+            if(!UserContext.user) {
                 Users.addUser(userObj)
+            } else {
+                console.log('Logged In')
             }
+
+            // if(userCheck) {
+            //     console.log("user found")
+            // } else {
+            //     console.log('adding')
+            //     Users.addUser(userObj)
+            // }
 
         }).catch((err) => {
             var code = err.code;
