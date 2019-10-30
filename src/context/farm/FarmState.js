@@ -16,6 +16,8 @@ import { GET_FARMS,
 
 import Axios from 'axios';
 
+const address = process.env.NODE_ENV === 'development' ? 'http://localhost:8181' : 'https://farm-fresh-produce.herokuapp.com';
+
 const FarmState = props => {
   const initialState = {
     farmPulled: false
@@ -23,11 +25,31 @@ const FarmState = props => {
 
   const [state, dispatch] = useReducer(farmReducer, initialState);
 
+  // const getFarms = () => {
+  //   dispatch({ type: GET_FARMS });
+  //   Axios.get('https://farm-fresh-produce.herokuapp.com/farms/')
+  //        .then(res => dispatch({ type: SUCC_GET_FARMS, payload: res.data }))
+  //        .catch(err => dispatch({ type: FAIL_GET_FARMS }));
+  // }
+
   const getFarms = () => {
     dispatch({ type: GET_FARMS });
-    Axios.get('https://farm-fresh-produce.herokuapp.com/farms/')
+    Axios.get(`${address}/graphQl`, {
+      params: {
+        query: `
+          {
+            farms {
+              id
+              userId
+              farmName
+            }
+          }
+        `
+      },
+      headers: { 'Content-Type': 'application/json' }
+    })
          .then(res => dispatch({ type: SUCC_GET_FARMS, payload: res.data }))
-         .catch(err => dispatch({ type: FAIL_GET_FARMS }));
+         .catch(err => dispatch({ type: FAIL_GET_FARMS, payload: err }));
   }
 
   const addFarm = (farmObj) => {

@@ -6,11 +6,18 @@ export default function FarmAdd(props) {
 
     const farmContext = useContext(FarmContext);
 
+    useEffect(() => {
+        console.log("attempting to pull farms")
+        farmContext.getFarms();
+    }, [])
+
     return (
         <div>
-            {/* <form onSubmit={}>
-                <input type="text" placeholder="Farm Name"></input>
-            </form> */}
+            {farmContext.state.farms ? farmContext.state.farms.map(farm => (
+                <div key={Date.now() + Math.random()*325}>
+                    {farm.farmName}
+                </div>
+            )) : "No Farms"}
         </div>
     )
 }

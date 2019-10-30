@@ -21,13 +21,14 @@ export default (state, action) => {
     case FAIL_GET_FARMS:
         return {
             ...state,
-            message: 'Failed to fetch farms'
+            message: 'Failed to fetch farms',
+            error: action.payload
         };
     case SUCC_GET_FARMS:
         return {
             ...state,
             message: 'Farm fetch success',
-            farms: action.payload
+            farms: action.payload.data.farms
         };
     case ADD_FARM:
         return {

@@ -16,9 +16,9 @@ import { GET_USER,
 
 import Axios from 'axios';
 
-// const address = process.env.NODE_ENV === 'development' ? 'http://localhost:8181' : 'https://farm-fresh-produce.herokuapp.com';
+const address = process.env.NODE_ENV === 'development' ? 'http://localhost:8181' : 'https://farm-fresh-produce.herokuapp.com';
 
-  const address = 'https://farm-fresh-produce.herokuapp.com';
+  // const address = 'https://farm-fresh-produce.herokuapp.com';
   
 const UserState = props => {
   const initialState = {
@@ -27,18 +27,36 @@ const UserState = props => {
 
   const [state, dispatch] = useReducer(userReducer, initialState);
 
-  // const getUser = (firebaseId) => {
-  //   dispatch({ type: GET_USER });
-  //   Axios.get(`${address}/users/${firebaseId}`)
-  //        .then(res => res.data)
-  //        .catch(err => dispatch({ type: FAIL_GET_USER }));
-  // }
-
   const addUser = (userObj) => {
     dispatch({ type: ADD_USER });
-    Axios.post(`${address}/auth/register`, userObj)
-         .then(res => dispatch({ type: SUCC_ADD_USER, payload: res.data }))
-         .catch(err => dispatch({ type: FAIL_ADD_USER }));
+    Axios.post(`${address}/graphQl`, {
+      query: `
+          mutation ($firstName: String!, $lastName: String!, $email: String!, $firebaseId: String!, $picture: String, $lat: String, $lon: String) {
+            addUser(
+              firstName: $firstName,
+              lastName: $lastName,
+              email: $email,
+              firebaseId: $firebaseId,
+              picture: $picture,
+              lat: $lat,
+              lon: $lon
+              ) {
+                firstName
+              }
+          }
+        `,
+        variables: {
+          firstName: userObj.firstName,
+          lastName: userObj.lastName,
+          email: userObj.email,
+          firebaseId: userObj.firebaseId,
+          picture: userObj.picture,
+          lat: userObj.lat,
+          lon: userObj.lon
+        }
+    })
+    .then(res => dispatch({ type: SUCC_ADD_USER, payload: res.data }))
+    .catch(err => dispatch({ type: FAIL_ADD_USER }));
   }
 
   const updateUser = (userObj) => {
