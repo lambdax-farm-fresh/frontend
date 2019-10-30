@@ -27,6 +27,35 @@ const UserState = props => {
 
   const [state, dispatch] = useReducer(userReducer, initialState);
 
+  const getUser = (firebaseId) => {
+    dispatch({ type: GET_USER });
+    Axios.get(`${address}/graphQl`, {
+      params: {
+        query: `
+          query ($firebaseId: String!) {
+            user(firebaseId: $firebaseId) {
+              id
+              firstName
+              lastName
+              email
+              firebaseId
+              lat
+              lon
+              picture
+            }
+          }
+        `,
+        variables: {
+          firebaseId: firebaseId
+        }
+      },
+      headers: { 'Content-Type': 'application/json' }
+      }
+    )
+         .then(res => dispatch({ type: SUCC_GET_USER, payload: res.data.data.user }))
+         .catch(err => dispatch({ type: FAIL_GET_USER, payload: err.data }));
+  }
+
   const addUser = (userObj) => {
     dispatch({ type: ADD_USER });
     Axios.post(`${address}/graphQl`, {
@@ -78,7 +107,7 @@ const UserState = props => {
     <userContext.Provider
       value={{
         state: state,
-        // getUser,
+        getUser,
         addUser,
         updateUser,
         deleteUser
