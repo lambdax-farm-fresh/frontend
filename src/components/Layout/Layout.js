@@ -17,7 +17,9 @@ const Layout = props => {
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
-          Users.getUser(user.uid);
+          if(Users.state.user === null) {
+            Users.getUser(user.uid);
+          }
       } else {
           console.log("No one is signed in")
       }
