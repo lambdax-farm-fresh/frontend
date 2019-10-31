@@ -35,3 +35,4 @@ export const SUCC_UPD_FARM = 'SUCC_UPD_FARM';
 export const DEL_FARM = 'DEL_FARM';
 export const FAIL_DEL_FARM = 'FAIL_DEL_FARM';
 export const SUCC_DEL_FARM = 'SUCC_DEL_FARM';
+
