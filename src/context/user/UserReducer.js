@@ -56,7 +56,8 @@ export default (state, action) => {
     case FAIL_UPD_USER:
         return {
             ...state,
-            message: 'Failed to UPD user'
+            message: 'Failed to UPD user',
+            error: action.payload
         };
     case SUCC_UPD_USER:
         return {

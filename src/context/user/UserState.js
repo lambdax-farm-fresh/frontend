@@ -1,25 +1,30 @@
 import React, { useReducer } from "react";
 import userReducer from "./UserReducer";
 import userContext from "./UserContext";
-import { GET_USER,
-    FAIL_GET_USER,
-    SUCC_GET_USER,
-         ADD_USER,
-    FAIL_ADD_USER,
-    SUCC_ADD_USER,
-         UPD_USER,
-    FAIL_UPD_USER,
-    SUCC_UPD_USER,
-         DEL_USER,
-    FAIL_DEL_USER,
-    SUCC_DEL_USER } from '../types';
+import {
+  GET_USER,
+  FAIL_GET_USER,
+  SUCC_GET_USER,
+  ADD_USER,
+  FAIL_ADD_USER,
+  SUCC_ADD_USER,
+  UPD_USER,
+  FAIL_UPD_USER,
+  SUCC_UPD_USER,
+  DEL_USER,
+  FAIL_DEL_USER,
+  SUCC_DEL_USER
+} from "../types";
 
-import Axios from 'axios';
+import Axios from "axios";
 
-const address = process.env.NODE_ENV === 'development' ? 'http://localhost:8181' : 'https://farm-fresh-produce.herokuapp.com';
+const address =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8181"
+    : "https://farm-fresh-produce.herokuapp.com";
 
-  // const address = 'https://farm-fresh-produce.herokuapp.com';
-  
+// const address = 'https://farm-fresh-produce.herokuapp.com';
+
 const UserState = props => {
   const initialState = {
     user: null
@@ -27,7 +32,7 @@ const UserState = props => {
 
   const [state, dispatch] = useReducer(userReducer, initialState);
 
-  const getUser = (firebaseId) => {
+  const getUser = firebaseId => {
     dispatch({ type: GET_USER });
     Axios.get(`${address}/graphQl`, {
       params: {
@@ -49,14 +54,15 @@ const UserState = props => {
           firebaseId: firebaseId
         }
       },
-      headers: { 'Content-Type': 'application/json' }
-      }
-    )
-         .then(res => dispatch({ type: SUCC_GET_USER, payload: res.data.data.user }))
-         .catch(err => dispatch({ type: FAIL_GET_USER, payload: err.data }));
-  }
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(res =>
+        dispatch({ type: SUCC_GET_USER, payload: res.data.data.user })
+      )
+      .catch(err => dispatch({ type: FAIL_GET_USER, payload: err.data }));
+  };
 
-  const addUser = (userObj) => {
+  const addUser = userObj => {
     dispatch({ type: ADD_USER });
     Axios.post(`${address}/graphQl`, {
       query: `
@@ -81,34 +87,82 @@ const UserState = props => {
               }
           }
         `,
-        variables: {
-          firstName: userObj.firstName,
-          lastName: userObj.lastName,
-          email: userObj.email,
-          firebaseId: userObj.firebaseId,
-          picture: userObj.picture,
-          lat: userObj.lat,
-          lon: userObj.lon
-        }
+      variables: {
+        firstName: userObj.firstName,
+        lastName: userObj.lastName,
+        email: userObj.email,
+        firebaseId: userObj.firebaseId,
+        picture: userObj.picture,
+        lat: userObj.lat,
+        lon: userObj.lon
+      }
     })
-    .then(res => dispatch({ type: SUCC_ADD_USER, payload: res.data.data.addUser }))
-    .catch(err => dispatch({ type: FAIL_ADD_USER }));
-  }
+      .then(res =>
+        dispatch({ type: SUCC_ADD_USER, payload: res.data.data.addUser })
+      )
+      .catch(err => dispatch({ type: FAIL_ADD_USER }));
+  };
 
-  const updateUser = (userObj) => {
+  const updateUser = userObj => {
     dispatch({ type: UPD_USER });
-    Axios.put(`${address}/users/${userObj.id}`, userObj)
-         .then(res => dispatch({ type: SUCC_UPD_USER, payload: res.data }))
-         .catch(err => dispatch({ type: FAIL_UPD_USER }));
-  }
+    Axios.post(`${address}/graphQl`, {
+      query: `
+          mutation ($id: Int!, $firstName: String!, $lastName: String!, $email: String!, $firebaseId: String!, $picture: String, $lat: String, $lon: String) {
+            updUser(
+              id: $id,
+              firstName: $firstName,
+              lastName: $lastName,
+              email: $email,
+              firebaseId: $firebaseId,
+              picture: $picture,
+              lat: $lat,
+              lon: $lon
+              ) {
+                id
+                firstName
+                lastName
+                firebaseId
+                email
+                picture
+                lat
+                lon
+              }
+          }
+        `,
+      variables: {
+        id: userObj.id,
+        firstName: userObj.firstName,
+        lastName: userObj.lastName,
+        email: userObj.email,
+        firebaseId: userObj.firebaseId,
+        picture: userObj.picture,
+        lat: userObj.lat,
+        lon: userObj.lon
+      }
+    })
+      .then(res => dispatch({ type: SUCC_UPD_USER, payload: res.data }))
+      .catch(err => dispatch({ type: FAIL_UPD_USER, payload: err }));
+  };
 
-  const deleteUser = (user_id) => {
-      dispatch({ type: DEL_USER });
-      Axios.delete(`${address}/users/${user_id}`)
-           .then(res => dispatch({ type: SUCC_DEL_USER, payload: res.data }))
-           .catch(err => dispatch({ type: FAIL_DEL_USER, error: err }))
-  }
-
+  const deleteUser = user_id => {
+    dispatch({ type: DEL_USER });
+    Axios.post(`${address}/graphQl`, {
+      query: `
+          mutation ($id: Int!) {
+            delUser(
+                id: $id
+              ) {
+                id
+              }
+          }
+        `,
+      variables: {
+        id: user_id
+      }
+    })
+      .then(res => dispatch({ type: SUCC_DEL_USER, payload: res.data }))
+      .catch(err => dispatch({ type: FAIL_DEL_USER, error: err }));
+  };
 
   return (
     <userContext.Provider

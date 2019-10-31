@@ -1,22 +1,27 @@
 import React, { useReducer } from "react";
 import farmReducer from "./FarmReducer";
 import farmContext from "./FarmContext";
-import { GET_FARMS,
-    FAIL_GET_FARMS,
-    SUCC_GET_FARMS,
-         ADD_FARM,
-    FAIL_ADD_FARM,
-    SUCC_ADD_FARM,
-         UPD_FARM,
-    FAIL_UPD_FARM,
-    SUCC_UPD_FARM,
-         DEL_FARM,
-    FAIL_DEL_FARM,
-    SUCC_DEL_FARM } from '../types';
+import {
+  GET_FARMS,
+  FAIL_GET_FARMS,
+  SUCC_GET_FARMS,
+  ADD_FARM,
+  FAIL_ADD_FARM,
+  SUCC_ADD_FARM,
+  UPD_FARM,
+  FAIL_UPD_FARM,
+  SUCC_UPD_FARM,
+  DEL_FARM,
+  FAIL_DEL_FARM,
+  SUCC_DEL_FARM
+} from "../types";
 
-import Axios from 'axios';
+import Axios from "axios";
 
-const address = process.env.NODE_ENV === 'development' ? 'http://localhost:8181' : 'https://farm-fresh-produce.herokuapp.com';
+const address =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8181"
+    : "https://farm-fresh-produce.herokuapp.com";
 
 const FarmState = props => {
   const initialState = {
@@ -39,13 +44,13 @@ const FarmState = props => {
           }
         `
       },
-      headers: { 'Content-Type': 'application/json' }
+      headers: { "Content-Type": "application/json" }
     })
-         .then(res => dispatch({ type: SUCC_GET_FARMS, payload: res.data }))
-         .catch(err => dispatch({ type: FAIL_GET_FARMS, payload: err }));
-  }
+      .then(res => dispatch({ type: SUCC_GET_FARMS, payload: res.data }))
+      .catch(err => dispatch({ type: FAIL_GET_FARMS, payload: err }));
+  };
 
-  const addFarm = (farmObj) => {
+  const addFarm = farmObj => {
     dispatch({ type: ADD_FARM });
     Axios.post(`${address}/graphQl`, {
       query: `
@@ -58,19 +63,19 @@ const FarmState = props => {
               }
           }
         `,
-        variables: {
-          userId: farmObj.userId,
-          farmName: farmObj.farmName
-        }
+      variables: {
+        userId: farmObj.userId,
+        farmName: farmObj.farmName
+      }
     })
-         .then(res => dispatch({ type: SUCC_ADD_FARM, payload: res.data }))
-         .catch(err => dispatch({ type: FAIL_ADD_FARM, payload: err }));
-  }
+      .then(res => dispatch({ type: SUCC_ADD_FARM, payload: res.data }))
+      .catch(err => dispatch({ type: FAIL_ADD_FARM, payload: err }));
+  };
 
-  const updateFarm = (farmObj) => {
+  const updateFarm = farmObj => {
     dispatch({ type: UPD_FARM });
-      Axios.post(`${address}/graphQl`, {
-        query: `
+    Axios.post(`${address}/graphQl`, {
+      query: `
             mutation ($id: Int!, $userId: Int!, $farmName: String!) {
               updFarm(
                   id: $id,
@@ -81,20 +86,20 @@ const FarmState = props => {
                 }
             }
           `,
-          variables: {
-            id: farmObj.id,
-            userId: farmObj.userId,
-            farmName: farmObj.farmName
-          }
-      })
-         .then(res => dispatch({ type: SUCC_UPD_FARM, payload: res.data }))
-         .catch(err => dispatch({ type: FAIL_UPD_FARM, payload: err }));
-  }
+      variables: {
+        id: farmObj.id,
+        userId: farmObj.userId,
+        farmName: farmObj.farmName
+      }
+    })
+      .then(res => dispatch({ type: SUCC_UPD_FARM, payload: res.data }))
+      .catch(err => dispatch({ type: FAIL_UPD_FARM, payload: err }));
+  };
 
-  const deleteFarm = (farm_id) => {
-      dispatch({ type: DEL_FARM });
-      Axios.post(`${address}/graphQl`, {
-        query: `
+  const deleteFarm = farm_id => {
+    dispatch({ type: DEL_FARM });
+    Axios.post(`${address}/graphQl`, {
+      query: `
             mutation ($id: Int!) {
               delFarm(
                   id: $id
@@ -103,14 +108,13 @@ const FarmState = props => {
                 }
             }
           `,
-          variables: {
-            id: farm_id
-          }
-      })
-           .then(res => dispatch({ type: SUCC_DEL_FARM, payload: res.data}))
-           .catch(err => dispatch({ type: FAIL_DEL_FARM, error: err }))
-  }
-
+      variables: {
+        id: farm_id
+      }
+    })
+      .then(res => dispatch({ type: SUCC_DEL_FARM, payload: res.data }))
+      .catch(err => dispatch({ type: FAIL_DEL_FARM, error: err }));
+  };
 
   return (
     <farmContext.Provider
