@@ -25,13 +25,6 @@ const FarmState = props => {
 
   const [state, dispatch] = useReducer(farmReducer, initialState);
 
-  // const getFarms = () => {
-  //   dispatch({ type: GET_FARMS });
-  //   Axios.get('https://farm-fresh-produce.herokuapp.com/farms/')
-  //        .then(res => dispatch({ type: SUCC_GET_FARMS, payload: res.data }))
-  //        .catch(err => dispatch({ type: FAIL_GET_FARMS }));
-  // }
-
   const getFarms = () => {
     dispatch({ type: GET_FARMS });
     Axios.get(`${address}/graphQl`, {
@@ -76,14 +69,44 @@ const FarmState = props => {
 
   const updateFarm = (farmObj) => {
     dispatch({ type: UPD_FARM });
-    Axios.put(`https://farm-fresh-produce.herokuapp.com/farms/${farmObj.id}`, farmObj)
+      Axios.post(`${address}/graphQl`, {
+        query: `
+            mutation ($id: Int!, $userId: Int!, $farmName: String!) {
+              updFarm(
+                  id: $id,
+                  userId: $userId,
+                  farmName: $farmName
+                ) {
+                  farmName
+                }
+            }
+          `,
+          variables: {
+            id: farmObj.id,
+            userId: farmObj.userId,
+            farmName: farmObj.farmName
+          }
+      })
          .then(res => dispatch({ type: SUCC_UPD_FARM, payload: res.data }))
-         .catch(err => dispatch({ type: FAIL_UPD_FARM }));
+         .catch(err => dispatch({ type: FAIL_UPD_FARM, payload: err }));
   }
 
   const deleteFarm = (farm_id) => {
       dispatch({ type: DEL_FARM });
-      Axios.delete(`https://farm-fresh-produce.herokuapp.com/farms/${farm_id}`)
+      Axios.post(`${address}/graphQl`, {
+        query: `
+            mutation ($id: Int!) {
+              delFarm(
+                  id: $id
+                ) {
+                  id
+                }
+            }
+          `,
+          variables: {
+            id: farm_id
+          }
+      })
            .then(res => dispatch({ type: SUCC_DEL_FARM, payload: res.data}))
            .catch(err => dispatch({ type: FAIL_DEL_FARM, error: err }))
   }

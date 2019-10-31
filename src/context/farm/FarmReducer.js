@@ -54,7 +54,8 @@ export default (state, action) => {
     case FAIL_UPD_FARM:
         return {
             ...state,
-            message: 'Failed to UPD farm'
+            message: 'Failed to UPD farm',
+            error: action.payload
         };
     case SUCC_UPD_FARM:
         return {
@@ -70,7 +71,8 @@ export default (state, action) => {
     case FAIL_DEL_FARM:
         return {
             ...state,
-            message: 'Failed to DEL farm'
+            message: 'Failed to DEL farm',
+            error: action.payload
         };
     case SUCC_DEL_FARM:
         return {

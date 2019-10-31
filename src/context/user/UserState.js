@@ -70,7 +70,14 @@ const UserState = props => {
               lat: $lat,
               lon: $lon
               ) {
+                id
                 firstName
+                lastName
+                firebaseId
+                email
+                picture
+                lat
+                lon
               }
           }
         `,
@@ -84,7 +91,7 @@ const UserState = props => {
           lon: userObj.lon
         }
     })
-    .then(res => dispatch({ type: SUCC_ADD_USER, payload: res.data }))
+    .then(res => dispatch({ type: SUCC_ADD_USER, payload: res.data.data.addUser }))
     .catch(err => dispatch({ type: FAIL_ADD_USER }));
   }
 
@@ -98,7 +105,7 @@ const UserState = props => {
   const deleteUser = (user_id) => {
       dispatch({ type: DEL_USER });
       Axios.delete(`${address}/users/${user_id}`)
-           .then(res => dispatch({ type: SUCC_DEL_USER, payload: res.data}))
+           .then(res => dispatch({ type: SUCC_DEL_USER, payload: res.data }))
            .catch(err => dispatch({ type: FAIL_DEL_USER, error: err }))
   }
 
