@@ -23,7 +23,6 @@ const address =
     ? "http://localhost:8181"
     : "https://farm-fresh-produce.herokuapp.com";
 
-// const address = 'https://farm-fresh-produce.herokuapp.com';
 
 const UserState = props => {
   const initialState = {
