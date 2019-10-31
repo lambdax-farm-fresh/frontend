@@ -13,15 +13,17 @@ export default function GoogleLoginFunc() {
 
     const GoogleLoginFunc = () => {
         firebase.auth().signInWithPopup(provider).then(async (result) => {
-            var user = result.user.providerData[0];
+            var user = result.user;
 
             var userObj = {
-                firstName: 'Farm Fresh User',
+                firstName: user.displayName,
                 lastName: '',
                 email: user.email,
                 firebaseId: user.uid,
                 picture: user.photoURL
             }
+
+            console.log(userObj)
 
             const nice = await fetch(`http://localhost:8181/users/${userObj.firebaseId}`)
                                     .then(res => res.data)
@@ -30,6 +32,7 @@ export default function GoogleLoginFunc() {
             console.log(nice)
 
             if(!UserContext.user) {
+                console.log("adding user")
                 Users.addUser(userObj)
             } else {
                 console.log('Logged In')

@@ -54,9 +54,24 @@ const FarmState = props => {
 
   const addFarm = (farmObj) => {
     dispatch({ type: ADD_FARM });
-    Axios.post('https://farm-fresh-produce.herokuapp.com/farms/', farmObj)
+    Axios.post(`${address}/graphQl`, {
+      query: `
+          mutation ($userId: Int!, $farmName: String!) {
+            addFarm(
+                userId: $userId,
+                farmName: $farmName
+              ) {
+                farmName
+              }
+          }
+        `,
+        variables: {
+          userId: farmObj.userId,
+          farmName: farmObj.farmName
+        }
+    })
          .then(res => dispatch({ type: SUCC_ADD_FARM, payload: res.data }))
-         .catch(err => dispatch({ type: FAIL_ADD_FARM }));
+         .catch(err => dispatch({ type: FAIL_ADD_FARM, payload: err }));
   }
 
   const updateFarm = (farmObj) => {

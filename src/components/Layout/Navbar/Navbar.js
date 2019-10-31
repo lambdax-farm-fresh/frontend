@@ -33,15 +33,6 @@ const Navbar = () => {
     margin: 10px;
   `;
 
-  // const curUser = firebase.auth().onAuthStateChanged(function(user) {
-  //   if(user){
-  //     console.log("Firebase User FOUND")
-  //   } else {
-  //     console.log("NO FIREBASE USER.")
-  //   }
-  // }
-  // )
-
   return (
     <Nav>
       {/* Left Nav */}
