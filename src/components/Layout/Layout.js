@@ -24,6 +24,7 @@ const Layout = props => {
           console.log("No one is signed in")
       }
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

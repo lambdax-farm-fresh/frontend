@@ -9,6 +9,7 @@ export default function FarmList(props) {
   useEffect(() => {
     console.log("attempting to pull farms");
     farmContext.getFarms();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
