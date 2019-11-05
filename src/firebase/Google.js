@@ -13,10 +13,10 @@ export default function GoogleLoginFunc() {
 
     const GoogleLoginFunc = () => {
         firebase.auth().signInWithPopup(provider).then(async (result) => {
-            var user = result.user.providerData[0];
+            var user = result.user;
 
             var userObj = {
-                firstName: 'Farm Fresh User',
+                firstName: user.displayName,
                 lastName: '',
                 email: user.email,
                 firebaseId: user.uid,
@@ -25,13 +25,25 @@ export default function GoogleLoginFunc() {
 
             console.log(userObj)
 
-            const userCheck = await Users.getUser(userObj.firebaseId)
+            const nice = await fetch(`http://localhost:8181/users/${userObj.firebaseId}`)
+                                    .then(res => res.data)
+                                    .catch(err => console.log('ERROR', err))
 
-            if(userCheck) {
-                console.log("user found")
-            } else {
+            console.log(nice)
+
+            if(!UserContext.user) {
+                console.log("adding user")
                 Users.addUser(userObj)
+            } else {
+                console.log('Logged In')
             }
+
+            // if(userCheck) {
+            //     console.log("user found")
+            // } else {
+            //     console.log('adding')
+            //     Users.addUser(userObj)
+            // }
 
         }).catch((err) => {
             var code = err.code;
