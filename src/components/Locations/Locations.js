@@ -1,6 +1,7 @@
 import React from "react";
 
 import Location from "./Location";
+import CreateLocation from "./CreateLocation";
 
 const Locations = props => {
   return (
@@ -9,6 +10,7 @@ const Locations = props => {
       <div>Map over locations</div>
       <div>
         <Location />
+        <CreateLocation />
       </div>
     </>
   );
