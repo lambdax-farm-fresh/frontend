@@ -14,7 +14,8 @@ const Locations = props => {
 
   useEffect(() => {
     locationState.getLocations();
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -22,9 +23,9 @@ const Locations = props => {
         <hr />
         <CreateLocation />
 
-        {locationState.state.locations.map(location => {
+        {locationState.state.locations !== undefined | null ? locationState.state.locations.map(location => {
           return <Location data={location} />;
-        })}
+        }) : "No Locations Found"}
         <hr />
       </div>
     </>

@@ -61,7 +61,7 @@ const LocationState = props => {
     dispatch({ type: ADD_LOCATION });
     Axios.post(`${address}/graphQl`, {
       query: `
-          mutation ($farmId: Int!, lat: String!, lon: String!, streetNumber: String!, streetName: String!, city: String!, state: String!, countryCode: String!, zip: String!) {
+          mutation ($farmId: Int!, $lat: String!, $lon: String!, $streetNumber: String!, $streetName: String!, $city: String!, $state: String!, $countryCode: String!, $zip: String!) {
             addLocation(
                 farmId: $farmId,
                 lat: $lat,
@@ -73,7 +73,16 @@ const LocationState = props => {
                 countryCode: $countryCode,
                 zip: $zip
               ) {
-                locationName
+                id
+                farmId
+                lat
+                lon
+                streetNumber
+                streetName
+                city
+                state
+                countryCode
+                zip
               }
           }
         `,
@@ -89,7 +98,7 @@ const LocationState = props => {
         zip: locationObj.zip
       }
     })
-      .then(res => dispatch({ type: SUCC_ADD_LOCATION, payload: res.data }))
+      .then(res => dispatch({ type: SUCC_ADD_LOCATION, payload: res.data.data.addLocation }))
       .catch(err => dispatch({ type: FAIL_ADD_LOCATION, payload: err }));
   };
 
@@ -97,7 +106,7 @@ const LocationState = props => {
     dispatch({ type: UPD_LOCATION });
     Axios.post(`${address}/graphQl`, {
       query: `
-            mutation ($id: Int!, $farmId: Int!, lat: String!, lon: String!, streetNumber: String!, streetName: String!, city: String!, state: String!, countryCode: String!, zip: String!) {
+            mutation ($id: Int!, $farmId: Int!, $lat: String!, $lon: String!, $streetNumber: String!, $streetName: String!, $city: String!, $state: String!, $countryCode: String!, $zip: String!) {
               updLocation(
                   id: $id,
                   farmId: $farmId,
@@ -110,7 +119,16 @@ const LocationState = props => {
                   countryCode: $countryCode,
                   zip: $zip
                 ) {
-                  locationName
+                  id
+                  farmId
+                  lat
+                  lon
+                  streetNumber
+                  streetName
+                  city
+                  state
+                  countryCode
+                  zip
                 }
             }
           `,
