@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useContext } from "react";
 
-import testLocations from "./testLocations";
+// import testLocations from "./testLocations";
 
 import Location from "./Location";
 import CreateLocation from "./CreateLocation";
 
+import LocationContext from "../../context/location/LocationContext";
+
 const Locations = props => {
-  const [locations, setLocations] = useState(testLocations);
+  const locationState = useContext(LocationContext);
+
+  // const [locations, setLocations] = useState([]);
+
+  useEffect(() => {
+    locationState.getLocations();
+  });
 
   return (
     <>
@@ -14,7 +22,7 @@ const Locations = props => {
         <hr />
         <CreateLocation />
 
-        {locations.map(location => {
+        {locationState.state.locations.map(location => {
           return <Location data={location} />;
         })}
         <hr />

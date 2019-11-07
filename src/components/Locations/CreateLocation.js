@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import useForm from "react-hook-form";
 
+import LocationContext from "../../context/location/LocationContext";
+
 const CreateLocation = props => {
+  const locationState = useContext(LocationContext);
+
   const { register, handleSubmit, reset, errors } = useForm();
   const onSubmit = data => {
-    console.log(data);
+    locationState.addLocation(data);
     reset();
   };
 
