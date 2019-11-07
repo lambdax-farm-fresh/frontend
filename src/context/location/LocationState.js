@@ -51,7 +51,10 @@ const LocationState = props => {
           }
         `
       },
-      headers: { "Content-Type": "application/json" }
+      headers: { 
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+     }
     })
       .then(res => dispatch({ type: SUCC_GET_LOCATIONS, payload: res.data }))
       .catch(err => dispatch({ type: FAIL_GET_LOCATIONS, payload: err }));

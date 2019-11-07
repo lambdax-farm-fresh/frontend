@@ -24,7 +24,7 @@ const Locations = props => {
         <CreateLocation />
 
         {locationState.state.locations !== undefined | null ? locationState.state.locations.map(location => {
-          return <Location data={location} />;
+          return <Location key={Date.now() + Math.random()*323} data={location} />;
         }) : "No Locations Found"}
         <hr />
       </div>
