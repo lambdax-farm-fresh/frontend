@@ -40,7 +40,8 @@ import {
       case FAIL_ADD_LOCATION:
         return {
           ...state,
-          message: "Failed to add location"
+          message: "Failed to add location",
+          error: action.payload
         };
       case SUCC_ADD_LOCATION:
         return {

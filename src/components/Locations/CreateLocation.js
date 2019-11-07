@@ -8,7 +8,17 @@ const CreateLocation = props => {
 
   const { register, handleSubmit, reset, errors } = useForm();
   const onSubmit = data => {
-    locationState.addLocation(data);
+    const locationObj = {
+      ...data,
+      farmId: 1,
+      lat: "",
+      lon: "",
+      countryCode: ""
+    }
+
+    console.log(data)
+
+    locationState.addLocation(locationObj);
     reset();
   };
 
