@@ -4,6 +4,7 @@ import firebase from "../../firebase/firebase";
 import "firebase/auth";
 
 import Navbar from "./Navbar/Navbar";
+import Locations from "../Locations/Locations";
 
 import { useSanity } from "../../hooks/api";
 import UserContext from "../../context/user/UserContext";
@@ -32,6 +33,7 @@ const Layout = props => {
       <Navbar />
       <FarmList {...props} />
       {sanity}
+      <Locations />
     </>
   );
 };

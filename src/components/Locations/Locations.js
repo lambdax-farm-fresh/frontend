@@ -1,14 +1,31 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
+
+// import testLocations from "./testLocations";
 
 import Location from "./Location";
+import CreateLocation from "./CreateLocation";
+
+import LocationContext from "../../context/location/LocationContext";
 
 const Locations = props => {
+  const locationState = useContext(LocationContext);
+
+  // const [locations, setLocations] = useState([]);
+
+  useEffect(() => {
+    locationState.getLocations();
+  });
+
   return (
     <>
-      <div>List of Locations</div>
-      <div>Map over locations</div>
       <div>
-        <Location />
+        <hr />
+        <CreateLocation />
+
+        {locationState.state.locations.map(location => {
+          return <Location data={location} />;
+        })}
+        <hr />
       </div>
     </>
   );

@@ -9,6 +9,7 @@ import Layout from "./components/Layout/Layout";
 
 import FarmState from "./context/farm/FarmState";
 import UserState from "./context/user/UserState";
+import LocationState from "./context/location/LocationState";
 
 function App() {
   return (
@@ -21,7 +22,9 @@ function App() {
       <BrowserRouter>
         <UserState>
           <FarmState>
-            <Layout />
+            <LocationState>
+              <Layout />
+            </LocationState>
           </FarmState>
         </UserState>
       </BrowserRouter>
