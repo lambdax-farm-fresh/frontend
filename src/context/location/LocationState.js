@@ -21,7 +21,7 @@ import Axios from "axios";
 const address =
   process.env.NODE_ENV === "development"
     ? "http://localhost:8181"
-    : "https://location-fresh-produce.herokuapp.com";
+    : "https://farm-fresh-produce.herokuapp.com";
 
 const LocationState = props => {
   const initialState = {

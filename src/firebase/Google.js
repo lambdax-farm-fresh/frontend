@@ -4,6 +4,11 @@ import "firebase/auth";
 
 import UserContext from '../context/user/UserContext';
 
+const address =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8181"
+    : "https://farm-fresh-produce.herokuapp.com";
+
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
 
@@ -25,7 +30,9 @@ export default function GoogleLoginFunc() {
 
             console.log(userObj)
 
-            const nice = await fetch(`http://localhost:8181/users/${userObj.firebaseId}`)
+            //WILL NEED TO BE CHANGED TO GRAPHQL QUERY vvv
+
+            const nice = await fetch(`${address}/users/${userObj.firebaseId}`)
                                     .then(res => res.data)
                                     .catch(err => console.log('ERROR', err))
 
