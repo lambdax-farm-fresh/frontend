@@ -2,7 +2,7 @@ import firebase from "firebase/app";
 
 const config = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain: "farmfreshproduce.netlify.com",
+    authDomain: "farm-fresh-jsl.firebaseapp.com",
     databaseURL: "https://farm-fresh-jsl.firebaseio.com",
     projectId: "farm-fresh-jsl",
     storageBucket: "farm-fresh-jsl.appspot.com",
