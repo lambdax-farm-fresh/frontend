@@ -20,13 +20,13 @@ const Navbar = () => {
   `;
 
   const LeftNav = styled.div`
-    float: left;
     text-decoration: none;
     list-style: none;
   `;
 
   const RightNav = styled.div`
-    float: right;
+      display: flex;
+      align-items: center;
   `;
 
   const StyledLink = styled(Link)`
