@@ -10,27 +10,31 @@ import SignedInLinks from "./SignedInLinks";
 
 const Navbar = () => {
   const Nav = styled.nav`
-    background-color: orange;
+    background-color: rgba(232,232,232,1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     height: 60px;
     width: "100%";
     margin: "0px";
   `;
 
   const LeftNav = styled.div`
-    float: left;
     text-decoration: none;
     list-style: none;
   `;
+
   const RightNav = styled.div`
-    float: right;
+      display: flex;
+      align-items: center;
   `;
 
   const StyledLink = styled(Link)`
     text-decoration: none;
-    font-size: 2rem;
-    background-color: green;
-    padding: 20px;
-    margin: 10px;
+    font-size: 2.2rem;
+    padding: 10px;
+    color: rgba(0,144,0,0.89);
+    font-weight: bold;
   `;
 
   return (

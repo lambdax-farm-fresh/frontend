@@ -1,4 +1,5 @@
 import React, { useEffect, useContext } from "react";
+import { Switch, Route } from 'react-router-dom';
 
 import firebase from "../../firebase/firebase";
 import "firebase/auth";
@@ -9,6 +10,7 @@ import Locations from "../Locations/Locations";
 import { useSanity } from "../../hooks/api";
 import UserContext from "../../context/user/UserContext";
 import FarmList from "../Test/FarmList";
+import UserDash from "../Dashboard/UserDash";
 
 const Layout = props => {
   const [sanity] = useSanity("");
@@ -31,9 +33,11 @@ const Layout = props => {
   return (
     <>
       <Navbar />
-      <FarmList {...props} />
+      <Switch>
+        <Route exact path="/farms" component={FarmList} />
+        <Route exact path="/userdash" component={UserDash} />
+      </Switch>
       {sanity}
-      <Locations />
     </>
   );
 };
