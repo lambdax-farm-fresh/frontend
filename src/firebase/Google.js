@@ -36,9 +36,8 @@ export default function GoogleLoginFunc() {
                                     .then(res => res.data)
                                     .catch(err => console.log('ERROR', err))
 
-            console.log(nice)
 
-            if(!UserContext.user) {
+            if(!UserContext.state.user) {
                 console.log("adding user")
                 Users.addUser(userObj)
             } else {

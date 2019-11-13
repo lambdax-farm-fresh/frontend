@@ -50,6 +50,11 @@ const FarmState = props => {
       .catch(err => dispatch({ type: FAIL_GET_FARMS, payload: err }));
   };
 
+  // const pullLocations = (id) => {
+  //   dispatch({ type: PULL_FARM_LOCATIONS });
+  //   Axios.get(``)
+  // }
+
   const addFarm = farmObj => {
     dispatch({ type: ADD_FARM });
     Axios.post(`${address}/graphQl`, {
