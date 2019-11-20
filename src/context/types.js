@@ -36,6 +36,9 @@ export const DEL_FARM = 'DEL_FARM';
 export const FAIL_DEL_FARM = 'FAIL_DEL_FARM';
 export const SUCC_DEL_FARM = 'SUCC_DEL_FARM';
 
+export const CLEAR_USER = 'CLEAR_USER';
+export const LOAD_USER = 'LOAD_USER';
+
 //LOCATIONS
 export const GET_LOCATIONS = 'GET_LOCATIONS';
 export const FAIL_GET_LOCATIONS = 'FAIL_GET_LOCATIONS';

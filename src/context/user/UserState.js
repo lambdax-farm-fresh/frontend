@@ -13,7 +13,9 @@ import {
   SUCC_UPD_USER,
   DEL_USER,
   FAIL_DEL_USER,
-  SUCC_DEL_USER
+  SUCC_DEL_USER,
+  CLEAR_USER,
+  LOAD_USER
 } from "../types";
 
 import Axios from "axios";
@@ -30,6 +32,14 @@ const UserState = props => {
   };
 
   const [state, dispatch] = useReducer(userReducer, initialState);
+
+  const clearUser = () => {
+    dispatch({ type: CLEAR_USER })
+  }
+
+  const loadUser = (user) => {
+    dispatch({ type: LOAD_USER, payload: user })
+  }
 
   const getUser = firebaseId => {
     dispatch({ type: GET_USER });
@@ -170,7 +180,9 @@ const UserState = props => {
         getUser,
         addUser,
         updateUser,
-        deleteUser
+        deleteUser,
+        clearUser,
+        loadUser
       }}
     >
       {props.children}

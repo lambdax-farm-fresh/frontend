@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "@emotion/styled";
 
+import firebase from "../../../firebase/firebase";
+import "firebase/auth";
+import userContext from "../../../context/user/UserContext";
+
 const SignedInLinks = () => {
+  const Users = useContext(userContext);
+
   const Ul = styled.ul`
     list-style-type: none;
     margin: 20px 0 0;
@@ -21,6 +27,16 @@ const SignedInLinks = () => {
     text-decoration: none;
   `;
 
+  const SignOut = () => {
+    firebase.auth().signOut().then(function() {
+      console.log("Signed Out")
+    }).catch(function(error) {
+      console.log("Sign Out Error", error)
+    });
+    
+    Users.clearUser();
+  }
+
   return (
     <div>
       <Ul>
@@ -31,7 +47,7 @@ const SignedInLinks = () => {
           <StyledNavLink to="/">Inventory</StyledNavLink>
         </Li>
         <Li>
-          <StyledNavLink to="/">Logout</StyledNavLink>
+          <StyledNavLink onClick={() => SignOut()} to="/">Logout</StyledNavLink>
         </Li>
       </Ul>
     </div>
