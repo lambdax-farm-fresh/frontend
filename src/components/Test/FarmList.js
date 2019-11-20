@@ -13,7 +13,7 @@ export default function FarmList(props) {
 
   return (
     <div>
-      {farmContext.state.farms
+      {farmContext.state.farms !== null || undefined
         ? farmContext.state.farms.map(farm => (
             <div key={Date.now() + Math.random() * 325}>{farm.farmName}</div>
           ))

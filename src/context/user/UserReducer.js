@@ -13,7 +13,9 @@ import {
   SUCC_DEL_USER,
   LOG_USER,
   FAIL_LOG_USER,
-  SUCC_LOG_USER
+  SUCC_LOG_USER,
+  CLEAR_USER,
+  LOAD_USER
 } from "../types";
 
 export default (state, action) => {
@@ -99,6 +101,16 @@ export default (state, action) => {
         message: "User LOG success",
         user: action.payload
       };
+    case CLEAR_USER:
+      return {
+        ...state,
+        user: null
+      };
+    case LOAD_USER:
+      return {
+        ...state,
+        user: action.payload
+      }
     default:
       return state;
   }

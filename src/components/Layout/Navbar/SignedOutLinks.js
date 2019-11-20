@@ -26,16 +26,18 @@ const SignedOutLinks = () => {
   return (
     <div>
       <Ul>
-        <Li>
+        {/* <Li>
           <StyledNavLink to="/">
-            <span>Register</span>
+            Register
           </StyledNavLink>
         </Li>
         <Li>
           <StyledNavLink to="/">
-            <span>Sign In</span>
-            <GoogleSigninFunc />
+            Sign In
           </StyledNavLink>
+        </Li> */}
+        <Li>
+          <GoogleSigninFunc />
         </Li>
       </Ul>
     </div>
