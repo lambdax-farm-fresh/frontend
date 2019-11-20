@@ -37,23 +37,32 @@ export default function GoogleLoginFunc() {
             query: `query ($firebaseId: String!) 
                         { user(firebaseId: $firebaseId) 
                             { 
-                                id 
+                                id
+                                firstName
+                                lastName
+                                firebaseId
+                                email
+                                picture
+                                lat
+                                lon
+                                rankrole
                             } }`,
             variables: {
-                firebaseId: userObj.firebaseId
+              firebaseId: userObj.firebaseId
             }
           })
         })
           .then(res => res.json())
           .catch(err => console.log(err));
 
+        console.log(usercheck);
 
-        if(usercheck.data.user === null || undefined) {
-            console.log("adding user")
-            Users.addUser(userObj)
+        if (usercheck.data.user === null || undefined) {
+          console.log("adding user");
+          Users.addUser(userObj);
         } else {
-            Users.loadUser(userObj)
-            console.log('Logged In')
+          Users.loadUser(userObj);
+          console.log("Logged In");
         }
       })
       .catch(err => {

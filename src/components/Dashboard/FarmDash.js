@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
 
+import AddFarm from '../Test/AddFarm';
 import UserContext from '../../context/user/UserContext'
 
-export default function UserDash() {
+export default function FarmDash() {
     const Users = useContext(UserContext)
 
     return (
@@ -10,12 +11,12 @@ export default function UserDash() {
             {Users.state.user !== null ? 
                 (
                     <div>
-                        User Dashboard Here
+                        <AddFarm />
                     </div>
                 ) :
                 (
                     <div>
-                        No user
+                        Not logged in
                     </div>
                 )}
         </>

@@ -13,6 +13,7 @@ import FarmList from "../Test/FarmList";
 import UserDash from "../Dashboard/UserDash";
 
 import styled from "@emotion/styled";
+import FarmDash from "../Dashboard/FarmDash";
 
 const LayoutContain = styled.div`
   font-family: Arial;
@@ -65,6 +66,7 @@ const Layout = props => {
       <Switch>
         <Route exact path="/farms" component={FarmList} />
         <Route exact path="/userdash" component={UserDash} />
+        <Route exact path="/farmerdash" component={FarmDash} />
       </Switch>
       {sanity}
     </LayoutContain>

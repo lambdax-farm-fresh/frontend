@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 
 import GoogleSigninFunc from "../../../firebase/Google";
 
+
 const SignedOutLinks = () => {
   const Ul = styled.ul`
     list-style-type: none;

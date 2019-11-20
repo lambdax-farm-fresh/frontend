@@ -40,11 +40,19 @@ const SignedInLinks = () => {
   return (
     <div>
       <Ul>
+        {Users.state.user.rankrole === "farmer" || "admin" ? (
+          <Li>
+            <StyledNavLink to="/farmerdash">Farmer Dashboard</StyledNavLink>
+          </Li>
+        ) : null}
         <Li>
           <StyledNavLink to="/">Locations</StyledNavLink>
         </Li>
         <Li>
           <StyledNavLink to="/">Inventory</StyledNavLink>
+        </Li>
+        <Li>
+          <StyledNavLink to="/userdash">{Users.state.user.firstName}</StyledNavLink>
         </Li>
         <Li>
           <StyledNavLink onClick={() => SignOut()} to="/">Logout</StyledNavLink>

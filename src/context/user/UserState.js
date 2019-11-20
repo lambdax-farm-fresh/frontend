@@ -56,6 +56,7 @@ const UserState = props => {
               lat
               lon
               picture
+              rankrole
             }
           }
         `,
