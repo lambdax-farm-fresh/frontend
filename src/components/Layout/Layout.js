@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route } from "react-router-dom";
 
 import firebase from "../../firebase/firebase";
 import "firebase/auth";
@@ -14,33 +14,28 @@ import FarmList from "../Test/FarmList";
 import FarmDash from "./Dashboard/FarmDash";
 
 const Layout = props => {
-
   const Users = useContext(UserContext);
 
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
-          if(Users.state.user === null) {
-            Users.getUser(user.uid);
-          }
+        if (Users.state.user === null) {
+          Users.getUser(user.uid);
+        }
       } else {
-          console.log("No one is signed in")
+        console.log("No one is signed in");
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   return (
     <div id="layout-div">
       <Navbar />
       {Users.state.user !== null || undefined ? (
-        <div className="top-message">
-        Currently signed in
-        </div>
+        <div className="top-message">Currently signed in</div>
       ) : (
-        <div className="top-message">
-        Please sign in above.
-        </div>
+        <div className="top-message">Please sign in above.</div>
       )}
       <Switch>
         <Route exact path="/farms" component={FarmList} />

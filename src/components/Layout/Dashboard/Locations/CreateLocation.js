@@ -14,9 +14,9 @@ const CreateLocation = props => {
       lat: "",
       lon: "",
       countryCode: ""
-    }
+    };
 
-    console.log(data)
+    console.log(data);
 
     locationState.addLocation(locationObj);
     reset();
