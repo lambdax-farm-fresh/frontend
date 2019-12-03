@@ -11,6 +11,7 @@ export default function FarmDash() {
       {Users.state.user !== null ? (
         <div>
           <AddFarm />
+          LIST OF USER OWNED FARMS
         </div>
       ) : (
         <div>Not logged in</div>
