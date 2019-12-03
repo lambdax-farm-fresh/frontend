@@ -6,7 +6,6 @@ import GoogleSigninFunc from "../../../firebase/Google";
 export default function SignedOutLinks() {
   return (
     <div>
-      <ul>
         {/* <Li>
           <StyledNavLink to="/">
             Register
@@ -17,10 +16,7 @@ export default function SignedOutLinks() {
             Sign In
           </StyledNavLink>
         </Li> */}
-        <li>
           <GoogleSigninFunc />
-        </li>
-      </ul>
     </div>
   )
 }

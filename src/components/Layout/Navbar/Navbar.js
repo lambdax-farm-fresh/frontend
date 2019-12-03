@@ -6,19 +6,47 @@ import SignedInLinks from "./SignedInLinks";
 
 import userContext from "../../../context/user/UserContext";
 
-// import firebase from "../../../firebase/firebase";
-// import "firebase/auth";
+import styled from "styled-components";
+
+const Nav = styled.nav`
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(0,0,0,0.04);
+  padding: 16px 4px;
+
+  a, button {
+    color: white;
+    background-color: green;
+    padding: 4px;
+    border-radius: 4px;
+  }
+
+  h1 {
+    font-size: 1.6em;
+    font-weight: 300;
+    
+    a {
+      color: black;
+      background: transparent;
+    }
+  }
+
+
+`
 
 const Navbar = () => {
   const Users = useContext(userContext);
 
 
   return (
-    <div>
+    <Nav>
       {/* Left Div */}
-      <div id="left-nav">
+      <h1>
         <Link to="/">Farm Fresh Produce</Link>
-      </div>
+      </h1>
+
       {/* Right Div */}
       <div id="right-nav">
         {Users.state.user !== null || undefined ? (
@@ -28,7 +56,7 @@ const Navbar = () => {
             <SignedOutLinks />
           )}
       </div>
-    </div>
+    </Nav>
   );
 };
 

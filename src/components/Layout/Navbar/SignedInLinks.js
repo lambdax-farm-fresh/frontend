@@ -20,25 +20,13 @@ const SignedInLinks = () => {
 
   return (
     <div>
-      <ul>
         {Users.state.user.rankrole === "farmer" || "admin" ? (
-          <li>
             <NavLink to="/farmerdash">Farmer Dashboard</NavLink>
-          </li>
         ) : null}
-        <li>
           <NavLink to="/">Locations</NavLink>
-        </li>
-        <li>
           <NavLink to="/">Inventory</NavLink>
-        </li>
-        <li>
           <NavLink to="/userdash">{Users.state.user.firstName}</NavLink>
-        </li>
-        <li>
           <NavLink onClick={() => SignOut()} to="/">Logout</NavLink>
-        </li>
-      </ul>
     </div>
   );
 };

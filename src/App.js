@@ -9,6 +9,10 @@ import FarmState from "./context/farm/FarmState";
 import UserState from "./context/user/UserState";
 import LocationState from "./context/location/LocationState";
 
+import "./assets/css/normalize.css";
+import "./assets/css/global.css";
+import "./assets/css/typo.css";
+
 function App() {
   return (
     <div className="App">
