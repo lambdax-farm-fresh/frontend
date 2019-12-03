@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import styled from "@emotion/styled";
 
 import firebase from "../../../firebase/firebase";
 import "firebase/auth";
@@ -8,24 +7,6 @@ import userContext from "../../../context/user/UserContext";
 
 const SignedInLinks = () => {
   const Users = useContext(userContext);
-
-  const Ul = styled.ul`
-    list-style-type: none;
-    margin: 20px 0 0;
-    padding: 0;
-  `;
-
-  const Li = styled.li`
-    background-color: #ccc;
-    padding: 10px;
-    margin: 8px;
-    border-radius: 4px;
-    display: inline;
-  `;
-
-  const StyledNavLink = styled(NavLink)`
-    text-decoration: none;
-  `;
 
   const SignOut = () => {
     firebase.auth().signOut().then(function() {
@@ -39,17 +20,13 @@ const SignedInLinks = () => {
 
   return (
     <div>
-      <Ul>
-        <Li>
-          <StyledNavLink to="/">Locations</StyledNavLink>
-        </Li>
-        <Li>
-          <StyledNavLink to="/">Inventory</StyledNavLink>
-        </Li>
-        <Li>
-          <StyledNavLink onClick={() => SignOut()} to="/">Logout</StyledNavLink>
-        </Li>
-      </Ul>
+        {Users.state.user.rankrole === "farmer" || "admin" ? (
+            <NavLink to="/farmerdash">Farmer Dashboard</NavLink>
+        ) : null}
+          <NavLink to="/">Locations</NavLink>
+          <NavLink to="/">Inventory</NavLink>
+          <NavLink to="/userdash">{Users.state.user.firstName}</NavLink>
+          <NavLink onClick={() => SignOut()} to="/">Logout</NavLink>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import useForm from "react-hook-form";
 
-import LocationContext from "../../context/location/LocationContext";
+import LocationContext from "../../../../context/location/LocationContext";
 
 const CreateLocation = props => {
   const locationState = useContext(LocationContext);
@@ -14,9 +14,9 @@ const CreateLocation = props => {
       lat: "",
       lon: "",
       countryCode: ""
-    }
+    };
 
-    console.log(data)
+    console.log(data);
 
     locationState.addLocation(locationObj);
     reset();

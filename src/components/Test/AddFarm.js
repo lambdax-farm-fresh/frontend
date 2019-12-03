@@ -55,7 +55,7 @@ export default function AddFarm(props) {
         />
         <button>Submit</button>
       </form>
-      <form onSubmit={handleSubmitUpdate}>
+      {/* <form onSubmit={handleSubmitUpdate}>
         <label>Updated Farm Name (Farm ID 1)</label>
         <input
           type="text"
@@ -64,7 +64,7 @@ export default function AddFarm(props) {
           onChange={e => setupdFarmName(e.target.value)}
         />
         <button>Submit</button>
-      </form>
+      </form> */}
     </div>
   );
 }
