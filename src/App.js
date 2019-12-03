@@ -1,7 +1,5 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
-import emotionReset from "emotion-reset";
-import { Global, css } from "@emotion/core";
 
 import Layout from "./components/Layout/Layout";
 
@@ -14,18 +12,6 @@ import LocationState from "./context/location/LocationState";
 function App() {
   return (
     <div className="App">
-      <Global
-        styles={css`
-          ${emotionReset}
-
-          *, *::after, *::before {
-            box-sizing: border-box;
-            -moz-osx-font-smoothing: grayscale;
-            -webkit-font-smoothing: antialiased;
-            font-smoothing: antialiased;
-          }
-        `}
-      />
       <BrowserRouter>
         <UserState>
           <FarmState>

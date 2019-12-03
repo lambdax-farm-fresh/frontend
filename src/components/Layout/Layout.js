@@ -5,36 +5,15 @@ import firebase from "../../firebase/firebase";
 import "firebase/auth";
 
 import Navbar from "./Navbar/Navbar";
-import Locations from "../Locations/Locations";
+import Locations from "./Dashboard/Locations/Locations";
 
-import { useSanity } from "../../hooks/api";
 import UserContext from "../../context/user/UserContext";
+import UserDash from "./Dashboard/UserDash";
+
 import FarmList from "../Test/FarmList";
-import UserDash from "../Dashboard/UserDash";
-
-import styled from "@emotion/styled";
-import FarmDash from "../Dashboard/FarmDash";
-
-const LayoutContain = styled.div`
-  font-family: Arial;
-
-  .top-message {
-    padding: 12px 16px;
-    margin: 8px;
-    background-color: rgba(0,0,0,0.03);
-  }
-`
-
-const LoggedInMessage = styled.div`
-
-`;
-
-const LoggedOutMessage = styled.div`
-
-`;
+import FarmDash from "./Dashboard/FarmDash";
 
 const Layout = props => {
-  const [sanity] = useSanity("");
 
   const Users = useContext(UserContext);
 
@@ -52,24 +31,23 @@ const Layout = props => {
   }, [])
 
   return (
-    <LayoutContain>
+    <div id="layout-div">
       <Navbar />
       {Users.state.user !== null || undefined ? (
-        <LoggedInMessage className="top-message">
+        <div className="top-message">
         Currently signed in
-        </LoggedInMessage>
+        </div>
       ) : (
-        <LoggedOutMessage className="top-message">
+        <div className="top-message">
         Please sign in above.
-        </LoggedOutMessage>
+        </div>
       )}
       <Switch>
         <Route exact path="/farms" component={FarmList} />
         <Route exact path="/userdash" component={UserDash} />
         <Route exact path="/farmerdash" component={FarmDash} />
       </Switch>
-      {sanity}
-    </LayoutContain>
+    </div>
   );
 };
 

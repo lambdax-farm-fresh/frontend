@@ -1,11 +1,8 @@
 import React, { useEffect, useContext } from "react";
-
-// import testLocations from "./testLocations";
-
 import Location from "./Location";
 import CreateLocation from "./CreateLocation";
 
-import LocationContext from "../../context/location/LocationContext";
+import LocationContext from "../../../../context/location/LocationContext";
 
 const Locations = props => {
   const locationState = useContext(LocationContext);

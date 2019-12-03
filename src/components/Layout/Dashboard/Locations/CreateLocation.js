@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import useForm from "react-hook-form";
 
-import LocationContext from "../../context/location/LocationContext";
+import LocationContext from "../../../../context/location/LocationContext";
 
 const CreateLocation = props => {
   const locationState = useContext(LocationContext);
