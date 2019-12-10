@@ -19,7 +19,8 @@ const Nav = styled.nav`
   a, button {
     color: white;
     background-color: green;
-    padding: 4px;
+    padding: 8px;
+    margin: 0 4px;
     border-radius: 4px;
   }
 
