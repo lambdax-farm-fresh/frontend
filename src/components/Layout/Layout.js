@@ -12,6 +12,12 @@ import UserDash from "./Dashboard/UserDash";
 
 import FarmList from "../Test/FarmList";
 import FarmDash from "./Dashboard/FarmDash";
+import HomeDash from "./Dashboard/HomeDash";
+
+import styled from "styled-components";
+
+const LayoutHold = styled.div`
+`;
 
 const Layout = props => {
   const Users = useContext(UserContext);
@@ -32,16 +38,19 @@ const Layout = props => {
   return (
     <div id="layout-div">
       <Navbar />
-      {Users.state.user !== null || undefined ? (
-        <div className="top-message">Currently signed in</div>
-      ) : (
-        <div className="top-message">Please sign in above.</div>
-      )}
-      <Switch>
-        <Route exact path="/farms" component={FarmList} />
-        <Route exact path="/userdash" component={UserDash} />
-        <Route exact path="/farmerdash" component={FarmDash} />
-      </Switch>
+      <LayoutHold>
+        <Switch>
+          <Route exact path="/" component={HomeDash} />
+          <Route exact path="/farms" component={FarmList} />
+          <Route exact path="/userdash" component={UserDash} />
+          <Route exact path="/farmerdash" component={FarmDash} />
+        </Switch>
+        {Users.state.user !== null || undefined ? (
+          <div className="top-message">Currently signed in</div>
+        ) : (
+          <div className="top-message">Please sign in above.</div>
+        )}
+      </LayoutHold>
     </div>
   );
 };
