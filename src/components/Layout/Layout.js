@@ -45,11 +45,6 @@ const Layout = props => {
           <Route exact path="/userdash" component={UserDash} />
           <Route exact path="/farmerdash" component={FarmDash} />
         </Switch>
-        {Users.state.user !== null || undefined ? (
-          <div className="top-message">Currently signed in</div>
-        ) : (
-          <div className="top-message">Please sign in above.</div>
-        )}
       </LayoutHold>
     </div>
   );
