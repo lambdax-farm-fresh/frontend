@@ -13,7 +13,10 @@ import {
   SUCC_UPD_FARM,
   DEL_FARM,
   FAIL_DEL_FARM,
-  SUCC_DEL_FARM
+  SUCC_DEL_FARM,
+  GET_OWNED_FARMS,
+  SUCC_OWNED_FARMS,
+  FAIL_OWNED_FARMS
 } from "../types";
 
 import Axios from "axios";
@@ -50,10 +53,25 @@ const FarmState = props => {
       .catch(err => dispatch({ type: FAIL_GET_FARMS, payload: err }));
   };
 
-  // const pullLocations = (id) => {
-  //   dispatch({ type: PULL_FARM_LOCATIONS });
-  //   Axios.get(``)
-  // }
+  const getOwnedFarms = (uid) => {
+    dispatch({ type: GET_OWNED_FARMS });
+    Axios.get(`${address}/graphQl`, {
+      params: {
+        query: `
+          {
+            farms (userId: ${uid}) {
+              id
+              userId
+              farmName
+            }
+          }
+        `
+      },
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(res => dispatch({ type: SUCC_OWNED_FARMS, payload: res.data }))
+      .catch(err => dispatch({ type: FAIL_OWNED_FARMS, payload: err }));
+  }
 
   const addFarm = farmObj => {
     dispatch({ type: ADD_FARM });
@@ -128,7 +146,8 @@ const FarmState = props => {
         getFarms,
         addFarm,
         updateFarm,
-        deleteFarm
+        deleteFarm,
+        getOwnedFarms
       }}
     >
       {props.children}

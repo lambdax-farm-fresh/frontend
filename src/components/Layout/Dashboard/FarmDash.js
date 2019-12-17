@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
-import AddFarm from "../../Test/AddFarm";
 import UserContext from "../../../context/user/UserContext";
+import FarmList from "./Farm/FarmList";
 
 export default function FarmDash() {
   const Users = useContext(UserContext);
@@ -10,8 +10,7 @@ export default function FarmDash() {
     <>
       {Users.state.user !== null ? (
         <div>
-          <AddFarm />
-          LIST OF USER OWNED FARMS
+          <FarmList />
         </div>
       ) : (
         <div>Not logged in</div>

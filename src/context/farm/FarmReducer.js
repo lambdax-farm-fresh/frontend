@@ -10,7 +10,10 @@ import {
   SUCC_UPD_FARM,
   DEL_FARM,
   FAIL_DEL_FARM,
-  SUCC_DEL_FARM
+  SUCC_DEL_FARM,
+  GET_OWNED_FARMS,
+  SUCC_OWNED_FARMS,
+  FAIL_OWNED_FARMS
 } from "../types";
 
 export default (state, action) => {
@@ -82,6 +85,23 @@ export default (state, action) => {
         message: "Farm DEL success",
         farm: action.payload
       };
+    case GET_OWNED_FARMS:
+      return {
+        ...state,
+        message: "Getting owned farms"
+      }
+    case SUCC_OWNED_FARMS:
+      return {
+        ...state,
+        message: "Successfully got owned farms",
+        ownedFarms: action.payload.data.farms
+      }
+    case FAIL_OWNED_FARMS:
+      return {
+        ...state,
+        message: "Failed to get owned farms",
+        error: action.payload
+      }
     default:
       return state;
   }
