@@ -20,7 +20,7 @@ const SignedInLinks = () => {
 
   return (
     <div>
-        {Users.state.user.rankrole === "farmer" || "admin" ? (
+        {Users.state.user.rankrole === "farmer" | "admin" ? (
             <NavLink to="/farmerdash">Farmer Dashboard</NavLink>
         ) : null}
           <NavLink to="/">Locations</NavLink>
