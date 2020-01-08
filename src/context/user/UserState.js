@@ -15,7 +15,10 @@ import {
   FAIL_DEL_USER,
   SUCC_DEL_USER,
   CLEAR_USER,
-  LOAD_USER
+  LOAD_USER,
+  MAKE_FARMER,
+  SUCC_MAKE_FARMER_USER,
+  FAIL_MAKE_FARMER_USER
 } from "../types";
 
 import Axios from "axios";
@@ -39,6 +42,34 @@ const UserState = props => {
 
   const loadUser = (user) => {
     dispatch({ type: LOAD_USER, payload: user })
+  }
+
+  const makeFarmer = (user_id) => {
+    dispatch({ type: MAKE_FARMER })
+    Axios.post(`${address}/graphQl`, {
+      query: `
+          mutation ($id: Int!) {
+            makeFarmer(
+                id: $id
+              ) {
+                id
+                firstName
+                lastName
+                email
+                firebaseId
+                picture
+                lat
+                lon
+                rankrole
+              }
+          }
+        `,
+      variables: {
+        id: user_id
+      }
+    })
+      .then(res => dispatch({ type: SUCC_MAKE_FARMER_USER, payload: res.data.data.makeFarmer }))
+      .catch(err => dispatch({ type: FAIL_MAKE_FARMER_USER, error: err }));
   }
 
   const getUser = firebaseId => {
@@ -94,6 +125,7 @@ const UserState = props => {
                 picture
                 lat
                 lon
+                rankrole
               }
           }
         `,
@@ -136,6 +168,7 @@ const UserState = props => {
                 picture
                 lat
                 lon
+                rankrole
               }
           }
         `,
@@ -183,7 +216,8 @@ const UserState = props => {
         updateUser,
         deleteUser,
         clearUser,
-        loadUser
+        loadUser,
+        makeFarmer
       }}
     >
       {props.children}

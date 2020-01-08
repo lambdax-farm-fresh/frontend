@@ -13,28 +13,38 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(0,0,0,0.04);
   padding: 16px 4px;
+  background-color: green;
+  color: white;
 
   a, button {
-    color: white;
-    background-color: green;
-    padding: 8px;
+    font-size: 1em;
     margin: 0 4px;
-    border-radius: 4px;
+    padding: 4px;
+    border-radius: 2px;
+
+    @media(max-width: 525px) {
+      font-size: .82em;
+    }
   }
 
   h1 {
-    font-size: 1.6em;
-    font-weight: 300;
+    font-size: 1.8em;
+    font-family: 'Roboto Condensed';
+
+    @media(max-width: 525px) {
+      font-size: 1.5em;
+    }
     
     a {
-      color: black;
+      color: white;
       background: transparent;
     }
   }
 
-
+  #right-nav {
+    font-family: 'DM Sans';
+  }
 `
 
 const Navbar = () => {
