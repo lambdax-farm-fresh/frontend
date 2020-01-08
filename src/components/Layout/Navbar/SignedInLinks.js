@@ -9,22 +9,29 @@ const SignedInLinks = () => {
   const Users = useContext(userContext);
 
   const SignOut = () => {
-    firebase.auth().signOut().then(function() {
-      console.log("Signed Out")
-    }).catch(function(error) {
-      console.log("Sign Out Error", error)
-    });
-    
+    firebase
+      .auth()
+      .signOut()
+      .then(function() {
+        console.log("Signed Out");
+      })
+      .catch(function(error) {
+        console.log("Sign Out Error", error);
+      });
+
     Users.clearUser();
-  }
+  };
 
   return (
     <div>
-        {Users.state.user.rankrole === "farmer" | "admin" ? (
-            <NavLink to="/farmerdash">Farmer Dashboard</NavLink>
-        ) : null}
-          <NavLink to="/userdash">{Users.state.user.firstName}</NavLink>
-          <NavLink id="logoutButton" onClick={() => SignOut()} to="/">Logout</NavLink>
+      {Users.state.user.rankrole === "farmer" ||
+      Users.state.user.rankrole === "admin" ? (
+        <NavLink to="/farmerdash">Farmer Dashboard</NavLink>
+      ) : null}
+      <NavLink to="/userdash">{Users.state.user.firstName}</NavLink>
+      <NavLink id="logoutButton" onClick={() => SignOut()} to="/">
+        Logout
+      </NavLink>
     </div>
   );
 };

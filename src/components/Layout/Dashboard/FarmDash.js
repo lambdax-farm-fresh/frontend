@@ -10,7 +10,11 @@ export default function FarmDash() {
     <>
       {Users.state.user !== null ? (
         <div>
-          <FarmList />
+          {Users.state.user.rankrole === "farmer" || Users.state.user.rankrole === "admin" ? (
+            <FarmList />
+          ) : (
+            "Not a farm account. Head to your profile to update account."
+          )}
         </div>
       ) : (
         <div>Not logged in</div>
