@@ -15,9 +15,10 @@ const AddFarmMain = styled.form`
   margin: 4px;
   border-radius: 4px;
   height: 200px;
+  max-width: 300px;
 
   label {
-    font-size: 2em;
+    font-size: 1.2em;
     font-weight: bold;
   }
 
