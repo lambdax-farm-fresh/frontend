@@ -53,6 +53,14 @@ const UserState = props => {
                 id: $id
               ) {
                 id
+                firstName
+                lastName
+                email
+                firebaseId
+                picture
+                lat
+                lon
+                rankrole
               }
           }
         `,
@@ -60,7 +68,7 @@ const UserState = props => {
         id: user_id
       }
     })
-      .then(res => dispatch({ type: SUCC_MAKE_FARMER_USER, payload: res.data.data.user }))
+      .then(res => dispatch({ type: SUCC_MAKE_FARMER_USER, payload: res.data.data.makeFarmer }))
       .catch(err => dispatch({ type: FAIL_MAKE_FARMER_USER, error: err }));
   }
 

@@ -51,7 +51,7 @@ export default function UserDash() {
 
   return (
     <>
-      {Users.state.user !== null ? (
+      {Users.state.user !== null || undefined ? (
         <UDash>
           <div id="user-dash-display">
             <div id="user-dash-details">
