@@ -26,9 +26,9 @@ const SignedInLinks = () => {
     <div>
       {Users.state.user.rankrole === "farmer" ||
       Users.state.user.rankrole === "admin" ? (
-        <NavLink to="/farmerdash">Farmer Dashboard</NavLink>
+        <NavLink to="/farmerdash">Your Farms</NavLink>
       ) : null}
-      <NavLink to="/userdash">{Users.state.user.firstName}</NavLink>
+      <NavLink to="/userdash">Profile</NavLink>
       <NavLink id="logoutButton" onClick={() => SignOut()} to="/">
         Logout
       </NavLink>

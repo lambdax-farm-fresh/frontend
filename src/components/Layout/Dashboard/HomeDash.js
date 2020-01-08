@@ -7,6 +7,10 @@ const HomeHold = styled.div`
     display: flex;
     height: 100%;
     padding: 4px;
+
+    @media(max-width: 500px) {
+        flex-direction: column;
+    }
 `;
 
 const MainContent = styled.div`
@@ -37,6 +41,7 @@ const JumboIntro = styled.div`
         width: 100%;
         height: 100%;
         color: rgba(255,255,255,1);
+        text-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
         display: flex;
         align-items: end;
     }
@@ -52,7 +57,7 @@ export default function HomeDash() {
                     </div>
                 </JumboIntro>
                 <div>
-                    Recommended Farms
+                    Additional content here.
                 </div>
             </MainContent>
             <SideBar>

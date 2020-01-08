@@ -90,6 +90,7 @@ export default function FarmList() {
 
   useEffect(() => {
     Farms.getOwnedFarms(Users.state.user.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -107,7 +108,7 @@ export default function FarmList() {
                             return (
                               <div id="farmLocationDetails">
                                 <strong>Location {index + 1}</strong>
-                                {location.streetName}
+                                {location.streetNumber} {location.streetName}
                               </div>
                             )
                           })}

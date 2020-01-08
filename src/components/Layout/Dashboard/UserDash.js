@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Redirect } from "react-router-dom";
 
 import UserContext from "../../../context/user/UserContext";
 
@@ -64,7 +65,10 @@ export default function UserDash() {
           </div>
         </UDash>
       ) : (
-        <div>No user</div>
+        <div>
+          Please log in
+          <Redirect to="/" />
+        </div>
       )}
     </>
   );

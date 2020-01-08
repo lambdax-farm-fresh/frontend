@@ -125,6 +125,7 @@ const UserState = props => {
                 picture
                 lat
                 lon
+                rankrole
               }
           }
         `,
@@ -167,6 +168,7 @@ const UserState = props => {
                 picture
                 lat
                 lon
+                rankrole
               }
           }
         `,

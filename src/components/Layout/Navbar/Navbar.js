@@ -18,17 +18,23 @@ const Nav = styled.nav`
   color: white;
 
   a, button {
-    font-size: .95em;
-    font-weight: 600;
+    font-size: 1em;
     margin: 0 4px;
     padding: 4px;
     border-radius: 2px;
+
+    @media(max-width: 525px) {
+      font-size: .82em;
+    }
   }
 
   h1 {
-    font-family: Georgia;
-    font-size: 1.6em;
-    font-weight: 300;
+    font-size: 1.8em;
+    font-family: 'Roboto Condensed';
+
+    @media(max-width: 525px) {
+      font-size: 1.5em;
+    }
     
     a {
       color: white;
@@ -36,7 +42,9 @@ const Nav = styled.nav`
     }
   }
 
-
+  #right-nav {
+    font-family: 'DM Sans';
+  }
 `
 
 const Navbar = () => {
