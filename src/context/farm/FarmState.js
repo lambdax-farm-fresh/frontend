@@ -39,10 +39,16 @@ const FarmState = props => {
       params: {
         query: `
           {
-            farms {
+            farmLocations {
               id
-              userId
-              farmName
+              lat
+              lon
+              streetName
+              streetNumber
+              city
+              state
+              countryCode
+              zip
             }
           }
         `
@@ -63,6 +69,17 @@ const FarmState = props => {
               id
               userId
               farmName
+              farmLocations {
+                id
+                lat
+                lon
+                streetName
+                streetNumber
+                city
+                state
+                countryCode
+                zip
+              }
             }
           }
         `
