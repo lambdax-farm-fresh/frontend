@@ -36,12 +36,13 @@ const SingleFarm = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 4px;
+  min-height: 56px;
+  height: 100%;
 
   h3 {
       display: flex;
       align-items: center;
       width: 225px;
-      height: 55px;
       overflow: hidden;
   }
 
@@ -51,6 +52,14 @@ const SingleFarm = styled.div`
       justify-content: end;
       align-items: center;
       padding: 0 4px;
+
+      #userFarmLocations {
+          #farmLocationDetails {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+          }
+      }
   }
 
   #exclaimWarning {
@@ -93,7 +102,16 @@ export default function FarmList() {
                 <h3 id="userFarmName">{farm.farmName}</h3>
                 <div id="userFarmDetails">
                     <div id="userFarmLocations">
-                        {farm.farmLocations.length > 0 ? <div></div> : <div id="exclaimWarning">!</div>}
+                        {farm.farmLocations.length > 0 ? <div>
+                          {farm.farmLocations.map((location, index) => {
+                            return (
+                              <div id="farmLocationDetails">
+                                <strong>Location {index + 1}</strong>
+                                {location.streetName}
+                              </div>
+                            )
+                          })}
+                        </div> : <div id="exclaimWarning">!</div>}
                     </div>
                 </div>
                 <div>
