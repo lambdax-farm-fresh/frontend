@@ -19,6 +19,10 @@ export const LOG_USER = 'LOG_USER';
 export const FAIL_LOG_USER = 'FAIL_LOG_USER';
 export const SUCC_LOG_USER = 'SUCC_LOG_USER';
 
+export const MAKE_FARMER = 'MAKE_FARMER';
+export const FAIL_MAKE_FARMER_USER = 'FAIL_MAKE_FARMER_USER';
+export const SUCC_MAKE_FARMER_USER = 'SUCC_MAKE_FARMER_USER';
+
 //FARMS
 export const GET_FARMS = 'GET_FARMS';
 export const FAIL_GET_FARMS = 'FAIL_GET_FARMS';

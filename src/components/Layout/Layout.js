@@ -10,7 +10,6 @@ import Locations from "./Dashboard/Locations/Locations";
 import UserContext from "../../context/user/UserContext";
 import UserDash from "./Dashboard/UserDash";
 
-import FarmList from "../Test/FarmList";
 import FarmDash from "./Dashboard/FarmDash";
 import HomeDash from "./Dashboard/HomeDash";
 
@@ -41,7 +40,6 @@ const Layout = props => {
       <LayoutHold>
         <Switch>
           <Route exact path="/" component={HomeDash} />
-          <Route exact path="/farms" component={FarmList} />
           <Route exact path="/userdash" component={UserDash} />
           <Route exact path="/farmerdash" component={FarmDash} />
         </Switch>

@@ -15,7 +15,10 @@ import {
   FAIL_LOG_USER,
   SUCC_LOG_USER,
   CLEAR_USER,
-  LOAD_USER
+  LOAD_USER,
+  MAKE_FARMER,
+  SUCC_MAKE_FARMER_USER,
+  FAIL_MAKE_FARMER_USER
 } from "../types";
 
 export default (state, action) => {
@@ -110,6 +113,23 @@ export default (state, action) => {
       return {
         ...state,
         user: action.payload
+      }
+    case MAKE_FARMER:
+      return {
+        ...state,
+        message: 'Making user farmer'
+      }
+    case SUCC_MAKE_FARMER_USER:
+      return {
+        ...state,
+        message: 'User now has farmer access',
+        user: action.payload
+      }
+    case FAIL_MAKE_FARMER_USER:
+      return {
+        ...state,
+        message: 'Failed to make user farmer',
+        error: action.payload
       }
     default:
       return state;

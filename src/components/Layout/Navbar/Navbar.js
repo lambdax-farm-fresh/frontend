@@ -13,23 +13,25 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: rgba(0,0,0,0.04);
   padding: 16px 4px;
+  background-color: green;
+  color: white;
 
   a, button {
-    color: white;
-    background-color: green;
-    padding: 8px;
+    font-size: .95em;
+    font-weight: 600;
     margin: 0 4px;
-    border-radius: 4px;
+    padding: 4px;
+    border-radius: 2px;
   }
 
   h1 {
+    font-family: Georgia;
     font-size: 1.6em;
     font-weight: 300;
     
     a {
-      color: black;
+      color: white;
       background: transparent;
     }
   }
