@@ -28,6 +28,10 @@ export const GET_FARMS = 'GET_FARMS';
 export const FAIL_GET_FARMS = 'FAIL_GET_FARMS';
 export const SUCC_GET_FARMS = 'SUCC_GET_FARMS';
 
+export const GET_FARM = 'GET_FARM';
+export const FAIL_GET_FARM = 'FAIL_GET_FARM';
+export const SUCC_GET_FARM = 'UCC_GET_FARM';
+
 export const ADD_FARM = 'ADD_FARM';
 export const FAIL_ADD_FARM = 'FAIL_ADD_FARM';
 export const SUCC_ADD_FARM = 'SUCC_ADD_FARM';

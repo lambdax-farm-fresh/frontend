@@ -16,14 +16,12 @@ export default function FarmDash() {
           ) : (
             <div>
               Not a farm account. Head to your profile to update account.
-              <Redirect to="/" />
             </div>
           )}
         </div>
       ) : (
         <div>
           Not logged in
-          <Redirect to="/" />
         </div>
       )}
     </>

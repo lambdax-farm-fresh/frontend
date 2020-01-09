@@ -55,14 +55,10 @@ export default function GoogleLoginFunc() {
           .then(res => res.json())
           .catch(err => console.log(err));
 
-        console.log(usercheck);
-
         if (usercheck.data.user === null || undefined) {
-          console.log("adding user");
           Users.addUser(userObj);
         } else {
-          Users.loadUser(userObj);
-          console.log("Logged In");
+          Users.loadUser(usercheck.data.user);
         }
       })
       .catch(err => {

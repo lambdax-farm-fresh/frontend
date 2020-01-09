@@ -12,6 +12,8 @@ import UserDash from "./Dashboard/UserDash";
 import FarmDash from "./Dashboard/FarmDash";
 import HomeDash from "./Dashboard/HomeDash";
 
+import FarmPage from "./Pages/FarmPage";
+
 import styled from "styled-components";
 
 const LayoutHold = styled.div`
@@ -41,6 +43,7 @@ const Layout = props => {
           <Route exact path="/" component={HomeDash} />
           <Route exact path="/userdash" component={UserDash} />
           <Route exact path="/farmerdash" component={FarmDash} />
+          <Route exact path="/farm/:id" component={FarmPage} />
         </Switch>
       </LayoutHold>
     </div>

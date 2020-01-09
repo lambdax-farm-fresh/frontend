@@ -2,6 +2,9 @@ import {
   GET_FARMS,
   FAIL_GET_FARMS,
   SUCC_GET_FARMS,
+  GET_FARM,
+  FAIL_GET_FARM,
+  SUCC_GET_FARM,
   ADD_FARM,
   FAIL_ADD_FARM,
   SUCC_ADD_FARM,
@@ -35,6 +38,23 @@ export default (state, action) => {
         message: "Farm fetch success",
         farms: action.payload.data.farms
       };
+      case GET_FARM:
+        return {
+          ...state,
+          message: "Getting farm"
+        };
+      case FAIL_GET_FARM:
+        return {
+          ...state,
+          message: "Failed to fetch farm",
+          error: action.payload
+        };
+      case SUCC_GET_FARM:
+        return {
+          ...state,
+          message: "Farm fetch success",
+          farm: action.payload.data.farm
+        };
     case ADD_FARM:
       return {
         ...state,

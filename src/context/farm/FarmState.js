@@ -5,6 +5,9 @@ import {
   GET_FARMS,
   FAIL_GET_FARMS,
   SUCC_GET_FARMS,
+  GET_FARM,
+  FAIL_GET_FARM,
+  SUCC_GET_FARM,
   ADD_FARM,
   FAIL_ADD_FARM,
   SUCC_ADD_FARM,
@@ -28,7 +31,7 @@ const address =
 
 const FarmState = props => {
   const initialState = {
-    farmPulled: false
+    farm: null
   };
 
   const [state, dispatch] = useReducer(farmReducer, initialState);
@@ -57,6 +60,35 @@ const FarmState = props => {
     })
       .then(res => dispatch({ type: SUCC_GET_FARMS, payload: res.data }))
       .catch(err => dispatch({ type: FAIL_GET_FARMS, payload: err }));
+  };
+
+  const getFarm = (id) => {
+    dispatch({ type: GET_FARM });
+    Axios.get(`${address}/graphQl`, {
+      params: {
+        query: `
+        {
+          farm(id: ${id}) {
+            farmName
+            farmLocations {
+              id
+              lat
+              lon
+              streetName
+              streetNumber
+              city
+              state
+              countryCode
+              zip
+            }
+          }
+        }
+        `
+      },
+      headers: { "Content-Type": "application/json" }
+    })
+      .then(res => dispatch({ type: SUCC_GET_FARM, payload: res.data }))
+      .catch(err => dispatch({ type: FAIL_GET_FARM, payload: err }));
   };
 
   const getOwnedFarms = (uid) => {
@@ -160,6 +192,7 @@ const FarmState = props => {
     <farmContext.Provider
       value={{
         state: state,
+        getFarm,
         getFarms,
         addFarm,
         updateFarm,
