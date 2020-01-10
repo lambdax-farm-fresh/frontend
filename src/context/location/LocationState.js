@@ -64,8 +64,9 @@ const LocationState = props => {
     dispatch({ type: ADD_LOCATION });
     Axios.post(`${address}/graphQl`, {
       query: `
-          mutation ($farmId: Int!, $lat: String!, $lon: String!, $streetNumber: String!, $streetName: String!, $city: String!, $state: String!, $countryCode: String!, $zip: String!) {
+          mutation ($id: String!, $farmId: Int!, $lat: String!, $lon: String!, $streetNumber: String!, $streetName: String!, $city: String!, $state: String!, $countryCode: String!, $zip: String!) {
             addLocation(
+                id: $id,
                 farmId: $farmId,
                 lat: $lat,
                 lon: $lon,
@@ -90,6 +91,7 @@ const LocationState = props => {
           }
         `,
       variables: {
+        id: locationObj.id,
         farmId: locationObj.farmId,
         lat: locationObj.lat,
         lon: locationObj.lon,
@@ -109,7 +111,7 @@ const LocationState = props => {
     dispatch({ type: UPD_LOCATION });
     Axios.post(`${address}/graphQl`, {
       query: `
-            mutation ($id: Int!, $farmId: Int!, $lat: String!, $lon: String!, $streetNumber: String!, $streetName: String!, $city: String!, $state: String!, $countryCode: String!, $zip: String!) {
+            mutation ($id: String!, $farmId: Int!, $lat: String!, $lon: String!, $streetNumber: String!, $streetName: String!, $city: String!, $state: String!, $countryCode: String!, $zip: String!) {
               updLocation(
                   id: $id,
                   farmId: $farmId,
@@ -156,7 +158,7 @@ const LocationState = props => {
     dispatch({ type: DEL_LOCATION });
     Axios.post(`${address}/graphQl`, {
       query: `
-            mutation ($id: Int!) {
+            mutation ($id: String!) {
               delLocation(
                   id: $id
                 ) {

@@ -14,6 +14,7 @@ import FarmDash from "./Dashboard/FarmDash";
 import HomeDash from "./Dashboard/HomeDash";
 
 import FarmPage from "./Pages/FarmPage";
+import LocationPage from "./Pages/LocationPage";
 
 import styled from "styled-components";
 import EmailReg from "../../firebase/EmailReg";
@@ -45,6 +46,7 @@ const Layout = props => {
             <PrivateRoute exact path="/userdash" component={UserDash} />
             <PrivateRoute exact path="/farmerdash" component={FarmDash} />
             <Route exact path="/farm/:id" component={FarmPage} />
+            <Route exact path="/location/:locationId" component={LocationPage} />
             <Route>
               <h2>404</h2>
             </Route>

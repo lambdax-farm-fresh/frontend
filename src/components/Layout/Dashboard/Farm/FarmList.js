@@ -147,9 +147,9 @@ export default function FarmList() {
                       </div>
                     )}
                   </div>
+                  <div id="farmInteractButtons">
+                  <AddLocation farmId={farm.id} locationNumber={farm.farmLocations.length + 1} />
                 </div>
-                <div id="farmInteractButtons">
-                  <button id="btncust">Add Location</button>
                 </div>
               </SingleFarm>
             );
