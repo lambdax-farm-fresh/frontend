@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import SignedOutLinks from "./SignedOutLinks";
@@ -7,6 +7,7 @@ import SignedInLinks from "./SignedInLinks";
 import userContext from "../../../context/user/UserContext";
 
 import styled from "styled-components";
+import { AuthContext } from "../../Auth";
 
 const Nav = styled.nav`
   width: 100%;
@@ -18,7 +19,7 @@ const Nav = styled.nav`
   color: white;
 
   a, button {
-    font-size: 1em;
+    font-size: .92em;
     margin: 0 4px;
     padding: 4px;
     border-radius: 2px;
@@ -29,8 +30,8 @@ const Nav = styled.nav`
   }
 
   h1 {
-    font-size: 1.8em;
-    font-family: 'Roboto Condensed';
+    font-size: 2em;
+    font-family: 'Roboto Condensed', sans-serif;
 
     @media(max-width: 525px) {
       font-size: 1.5em;
@@ -42,14 +43,11 @@ const Nav = styled.nav`
     }
   }
 
-  #right-nav {
-    font-family: 'DM Sans';
-  }
 `
 
 const Navbar = () => {
   const Users = useContext(userContext);
-
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <Nav>
@@ -60,7 +58,7 @@ const Navbar = () => {
 
       {/* Right Div */}
       <div id="right-nav">
-        {Users.state.user !== null || undefined ? (
+        {currentUser !== null || undefined ? (
             <SignedInLinks />
           ) : 
            (

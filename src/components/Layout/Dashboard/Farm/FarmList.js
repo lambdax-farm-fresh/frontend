@@ -42,31 +42,33 @@ const SingleFarm = styled.div`
   min-height: 56px;
   height: 100%;
 
-  h3 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 225px;
-    overflow: hidden;
-    font-size: 1.4em;
-    font-weight: bold;
-    color: green;
-  }
-
   #userFarmDetails {
     display: flex;
     align-items: center;
-    padding: 0 4px;
+    padding: 4px;
+    margin: 4px
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0,0,0,.09);
+    border-radius: 4px;
+    padding: 16px;
+
+    h3 {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2em;
+      width: 255px;
+      color: green;
+    }
 
     #userFarmLocations {
       display: flex;
       width: 100%;
       flex-direction: row;
-      justify-content: end;
+      justify-content: center;
       align-items: center;
-      background-color: rgba(0, 159, 0, 0.2);
-      border-radius: 4px;
-      padding: 16px;
 
       #farmLocationDetails {
         display: flex;
@@ -125,8 +127,8 @@ export default function FarmList() {
           {Farms.state.ownedFarms.map(farm => {
             return (
               <SingleFarm>
-                <h3 id="userFarmName"><Link to={"/farm/" + farm.id} >{farm.farmName}</Link></h3>
                 <div id="userFarmDetails">
+                  <h3 id="userFarmName"><Link to={"/farm/" + farm.id} >{farm.farmName}</Link></h3>
                   <div id="userFarmLocations">
                     {farm.farmLocations.length > 0 ? (
                       <div>
@@ -162,7 +164,6 @@ export default function FarmList() {
       <div id={addOpen === true ? "opened" : "closed"}>
         <AddFarm id={"add"} />
       </div>
-      <AddLocation />
     </OwnedFarms>
   );
 }

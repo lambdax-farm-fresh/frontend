@@ -26,34 +26,40 @@ export default (state, action) => {
     case GET_USER:
       return {
         ...state,
-        message: "Getting user"
+        message: "Getting user",
+        getUserLoading: true
       };
     case FAIL_GET_USER:
       return {
         ...state,
-        message: "Failed to fetch user"
+        message: "Failed to fetch user",
+        getUserLoading: false
       };
     case SUCC_GET_USER:
       return {
         ...state,
         message: "User fetch success",
-        user: action.payload
+        user: action.payload,
+        getUserLoading: false
       };
     case ADD_USER:
       return {
         ...state,
-        message: "Adding a new user"
+        message: "Adding a new user",
+        addUserLoading: true
       };
     case FAIL_ADD_USER:
       return {
         ...state,
-        message: "Failed to add user"
+        message: "Failed to add user",
+        addUserLoading: false
       };
     case SUCC_ADD_USER:
       return {
         ...state,
         message: "User add success",
-        user: action.payload
+        user: action.payload,
+        addUserLoading: false
       };
     case UPD_USER:
       return {
@@ -91,18 +97,21 @@ export default (state, action) => {
     case LOG_USER:
       return {
         ...state,
-        message: "LOGing a new user"
+        message: "Currently logging in...",
+        loginUserLoading: true
       };
     case FAIL_LOG_USER:
       return {
         ...state,
-        message: "Failed to LOG user"
+        message: "Failed to login user.",
+        loginUserLoading: false
       };
     case SUCC_LOG_USER:
       return {
         ...state,
-        message: "User LOG success",
-        user: action.payload
+        message: "User login success.",
+        user: action.payload,
+        loginUserLoading: false
       };
     case CLEAR_USER:
       return {

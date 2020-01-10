@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from "react";
+import styled from "styled-components";
+import FarmContext from "../../../../../context/farm/FarmContext";
+import axios from 'axios';
 
-import styled from 'styled-components';
+export default function AddLocation(props) {
+  const Farms = useContext(FarmContext);
 
-export default function AddLocation() {
+  var [searchAdd, setSearchAdd] = useState("")
 
-    return (
-        <div>
-        </div>
-    )
+  const addLocationToFarm = async () => {
+
+  };
+
+  return (
+    <div>
+      <input type="text" value={searchAdd} onChange={e => setSearchAdd(e.target.value)} />
+      <button onClick={() => addLocationToFarm()}>CLICK</button>
+    </div>
+  );
 }

@@ -31,7 +31,10 @@ const address =
 
 const UserState = props => {
   const initialState = {
-    user: null
+    user: null,
+    addUserLoading: false,
+    getUserLoading: false,
+    loginUserLoading: false
   };
 
   const [state, dispatch] = useReducer(userReducer, initialState);

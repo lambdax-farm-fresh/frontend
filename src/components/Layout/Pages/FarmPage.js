@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import FarmContext from "../../../context/farm/FarmContext";
+import AddLocation from "../Dashboard/Farm/Locations/AddLocation";
+import UserContext from "../../../context/user/UserContext";
 
 export default function FarmPage(props) {
   const Farms = useContext(FarmContext);
