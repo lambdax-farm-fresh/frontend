@@ -1,5 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { Switch, Route } from "react-router-dom";
+import PrivateRoute from "../PrivateRoute";
 
 import firebase from "../../firebase/firebase";
 import "firebase/auth";
@@ -13,40 +14,45 @@ import FarmDash from "./Dashboard/FarmDash";
 import HomeDash from "./Dashboard/HomeDash";
 
 import FarmPage from "./Pages/FarmPage";
+import LocationPage from "./Pages/LocationPage";
 
 import styled from "styled-components";
+import EmailReg from "../../firebase/EmailReg";
+import EmailLog from "../../firebase/EmailLog";
+import { AuthContext } from "../Auth";
 
-const LayoutHold = styled.div`
-`;
+const LayoutFull = styled.div``;
+
+const LayoutHold = styled.div``;
 
 const Layout = props => {
+  const { currentUser } = useContext(AuthContext);
   const Users = useContext(UserContext);
 
   useEffect(() => {
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (user) {
-        if (Users.state.user === null) {
-          Users.getUser(user.uid);
-        }
-      } else {
-        console.log("No one is signed in");
-      }
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if(!!currentUser && !Users.state.user) {
+      Users.getUser(currentUser.uid);
+    }
+  }, [])
 
   return (
-    <div id="layout-div">
-      <Navbar />
-      <LayoutHold>
-        <Switch>
-          <Route exact path="/" component={HomeDash} />
-          <Route exact path="/userdash" component={UserDash} />
-          <Route exact path="/farmerdash" component={FarmDash} />
-          <Route exact path="/farm/:id" component={FarmPage} />
-        </Switch>
-      </LayoutHold>
-    </div>
+      <LayoutFull>
+        <Navbar />
+        <LayoutHold>
+          <Switch>
+            <Route exact path="/" component={HomeDash} />
+            <Route exact path="/emailreg" component={EmailReg} />
+            <Route exact path="/emaillog" component={EmailLog} />
+            <PrivateRoute exact path="/userdash" component={UserDash} />
+            <PrivateRoute exact path="/farmerdash" component={FarmDash} />
+            <Route exact path="/farm/:id" component={FarmPage} />
+            <Route exact path="/location/:locationId" component={LocationPage} />
+            <Route>
+              <h2>404</h2>
+            </Route>
+          </Switch>
+        </LayoutHold>
+      </LayoutFull>
   );
 };
 

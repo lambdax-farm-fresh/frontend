@@ -21,7 +21,7 @@ const MainContent = styled.div`
 `
 
 const SideBar = styled.div`
-    width: 400px;
+    width: 275px;
     padding: 4px;
 `
 

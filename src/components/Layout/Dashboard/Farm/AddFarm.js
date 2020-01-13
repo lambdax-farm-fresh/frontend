@@ -9,27 +9,26 @@ const AddFarmMain = styled.form`
   display: flex;
   justify-content: space-evenly;
   flex-direction: column;
-  background-color: green;
-  color: white;
+  background-color: rgba(0,0,0,.05);
+  border: 1px solid rgba(0,0,0,.09);
   padding: 12px;
   margin: 4px;
   border-radius: 4px;
-  height: 200px;
-  max-width: 300px;
+  max-width: 420px;
 
   label {
-    font-size: 1.2em;
-    font-weight: bold;
+    padding: 10px 0px;
+    font-size: 1em;
+    color: green;
   }
 
   input, button {
-    background-color: green;
+    background-color: white;
     padding: 8px;
+    margin: 4px 0px;
     border-radius: 4px;
-    margin: 0;
-    background-color: rgba(0,0,0,.4);
     border: 1px solid rgba(255,255,255,.9);
-    color: white;
+    color: rgba(0,0,0,.9);
   }
 `;
 
@@ -50,7 +49,8 @@ export default function AddFarm(props) {
 
     try {
       Farms.addFarm(farmObj);
-      Farms.getOwnedFarms(Users.state.user.id)
+      Farms.getOwnedFarms(Users.state.user.id);
+      setFarmName("");
     } catch (err) {
       console.log(err);
     }

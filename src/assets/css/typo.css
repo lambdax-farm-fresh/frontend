@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=DM+Sans|Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed&display=swap');
 html {
   font-size: 1px; /*for using REM units*/
 }
 body {
-  font-family: "DM Sans", -apple-system, BlinkMacSystemFont, "Roboto", "Oxygen",
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Oxygen",
     "Ubuntu", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   font-size: 16rem;
   font-weight: 400;
