@@ -1,14 +1,13 @@
 import React, { useContext } from "react";
 import firebase from "./firebase.js";
 import "firebase/auth";
-import axios from 'axios';
 
 import UserContext from "../context/user/UserContext";
 
-const address =
-  process.env.NODE_ENV === "development"
-    ? "http://localhost:8181"
-    : "https://farm-fresh-produce.herokuapp.com";
+// const address =
+//   process.env.NODE_ENV === "development"
+//     ? "http://localhost:8181"
+//     : "https://farm-fresh-produce.herokuapp.com";
 
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
