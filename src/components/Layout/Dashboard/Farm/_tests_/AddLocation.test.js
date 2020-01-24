@@ -13,7 +13,8 @@ console.error = jest.fn();
 
 test('<AddLocation />', () => {
     render(<AddLocation />)
-    expect(console.error).toHaveBeenCalled()
+    expect(console.error).not.toHaveBeenCalled()
 })
+
 
 
