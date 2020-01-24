@@ -12,8 +12,10 @@ afterEach(() => {
 console.error = jest.fn();
 
 test('<AddLocation />', () => {
-    render(<AddLocation />)
+    const { container } = render(<AddLocation />)
     expect(console.error).not.toHaveBeenCalled()
+    expect(container.firstChild).toMatchSnapshot()
+    // console.log(container.firstChild)
 })
 
 
