@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AddLocation /> 1`] = `
+<div
+  class="sc-bdVaJa fhPGpC"
+>
+  <div
+    id="addLocationButton"
+  >
+    <button
+      id="open"
+    >
+      Add Location
+    </button>
+  </div>
+  <form
+    id="close"
+  >
+    <label>
+      Lat
+    </label>
+    <input
+      type="text"
+      value=""
+    />
+    <label>
+      Lon
+    </label>
+    <input
+      type="text"
+      value=""
+    />
+    <label>
+      Street Number
+    </label>
+    <input
+      type="text"
+      value=""
+    />
+    <label>
+      Street Name
+    </label>
+    <input
+      type="text"
+      value=""
+    />
+    <label>
+      City
+    </label>
+    <input
+      type="text"
+      value=""
+    />
+    <label>
+      State
+    </label>
+    <input
+      type="text"
+      value=""
+    />
+    <label>
+      County Code
+    </label>
+    <input
+      type="text"
+      value=""
+    />
+    <label>
+      Zip
+    </label>
+    <input
+      type="text"
+      value=""
+    />
+    <button>
+      Add Location
+    </button>
+  </form>
+</div>
+`;
