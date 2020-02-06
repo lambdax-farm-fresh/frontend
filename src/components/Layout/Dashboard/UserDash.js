@@ -59,6 +59,27 @@ export default function UserDash() {
     Users.makeFarmer(Users.state.user.id);
   };
 
+  let coord = null;
+
+  const getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(locationCallback);
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  }
+
+  const locationCallback = (location) => {
+    coord = location.coords;
+
+    console.log("ok")
+    console.log(coord.latitude, coord.longitude)
+  }
+
+  let location = getLocation()
+
+  // console.log("loc", location);
+
   return (
     <>
       {Users.state.user !== null || undefined ? (
@@ -71,8 +92,10 @@ export default function UserDash() {
               </div>
               <div id="lowerDetails">
                 <p>Email: {Users.state.user.email}</p>
-                <p>lat: {Users.state.user.lat}</p>
-                <p>lon: {Users.state.user.lon}</p>
+                {/* <p>lat: {Users.state.user.lat}</p>
+                <p>lon: {Users.state.user.lon}</p> */}
+                <p>lat: {coord ? coord.latitude : 'a'}</p>
+                <p>lon: {coord ? coord.longitude : 'a'}</p>
                 <p>rankrole: {Users.state.user.rankrole}</p>
               </div>
             </div>
