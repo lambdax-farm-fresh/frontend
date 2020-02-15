@@ -1,12 +1,7 @@
-import React, { useContext } from "react";
-import { Redirect } from 'react-router-dom';
-
-import UserContext from "../../../context/user/UserContext";
+import React from "react";
 import FarmList from "./Farm/FarmList";
 
 export default function FarmDash() {
-  const Users = useContext(UserContext);
-
   // return (
   //   <>
   //     {Users.state.user !== null ? (
@@ -26,7 +21,5 @@ export default function FarmDash() {
   //     )}
   //   </>
   // );
-  return (
-    <FarmList />
-  )
+  return <FarmList />;
 }

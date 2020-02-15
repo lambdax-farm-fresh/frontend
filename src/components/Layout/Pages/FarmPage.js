@@ -1,16 +1,24 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import FarmContext from "../../../context/farm/FarmContext";
 
 export default function FarmPage(props) {
   const Farms = useContext(FarmContext);
 
-  useEffect(() => {
-    const {
-      match: { params }
-    } = props;
+  const {
+    match: { params }
+  } = props;
 
-    Farms.getFarm(params.id);
-  }, []);
+  useEffect(() => {
+    if (Farms.state.farm) {
+      if (Farms.state.farm.id) {
+        if (Farms.state.farm.id !== params.id) {
+          Farms.getFarm(params.id);
+        }
+      }
+    } else {
+      Farms.getFarm(params.id);
+    }
+  }, [params.id]);
 
   return (
     <div>

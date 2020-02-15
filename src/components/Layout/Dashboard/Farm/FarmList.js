@@ -7,24 +7,17 @@ import styled from "styled-components";
 import AddFarm from "./AddFarm";
 import AddLocation from "./Locations/AddLocation";
 
-const OwnedFarms = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 4px;
-  width: 100%;
-
+const FarmListDiv = styled.div`
+  #btncust {
+    border: 1px solid rgba(0, 99, 0, 0.4);
+    border-radius: 4px;
+    margin: 4px;
+    font-size: 0.95em;
+  }
   button {
     width: 125px;
     padding: 4px;
   }
-
-  #btncust {
-    border: 1px solid rgba(0,99,0,.4);
-    border-radius: 4px;
-    margin: 4px;
-    font-size: .95em;
-  }
-
   #opened {
     display: relative;
   }
@@ -34,13 +27,19 @@ const OwnedFarms = styled.div`
   }
 `;
 
+const OwnedFarms = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px;
+`;
+
 const SingleFarm = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 4px;
-  min-height: 56px;
-  height: 100%;
+  width: 100%;
 
   #userFarmDetails {
     display: flex;
@@ -110,10 +109,12 @@ export default function FarmList() {
 
   const [addOpen, setAddOpen] = useState(false);
 
-  // const pullFarms = () => {
-  //     Farms.getOwnedFarms(Users.state.user.id)
-  //     console.log("Farms Pulled. Make auto in future.")
-  // }
+  const pullFarms = async () => {
+      await Farms.getOwnedFarms(Users.state.user.id);
+      console.log(Farms.state.ownedFarms);
+      console.log("HIT");
+      setAddOpen(false);
+  }
 
   useEffect(() => {
     Farms.getOwnedFarms(Users.state.user.id);
@@ -121,49 +122,59 @@ export default function FarmList() {
   }, []);
 
   return (
-    <OwnedFarms>
-      {Farms.state.ownedFarms ? (
-        <div>
-          {Farms.state.ownedFarms.map(farm => {
-            return (
-              <SingleFarm>
-                <div id="userFarmDetails">
-                  <h3 id="userFarmName"><Link to={"/farm/" + farm.id} >{farm.farmName}</Link></h3>
-                  <div id="userFarmLocations">
-                    {farm.farmLocations.length > 0 ? (
-                      <div>
-                        {farm.farmLocations.map((location, index) => {
-                          return (
-                            <div id="farmLocationDetails">
-                              <strong>Location {index + 1}</strong>
-                              {location.streetNumber} {location.streetName}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    ) : (
-                      <div id="noLocations">
-                        <div id="exclaimWarning">!</div> No Locations Found
-                      </div>
-                    )}
+    <FarmListDiv>
+      <OwnedFarms>
+        {Farms.state.ownedFarms ? (
+          <div>
+            {Farms.state.ownedFarms.map(farm => {
+              return (
+                <SingleFarm key={Date.now() + Math.random() * 367}>
+                  <div id="userFarmDetails">
+                    <h3 id="userFarmName">
+                      <Link to={"/farm/" + farm.id}>{farm.farmName}</Link>
+                    </h3>
+                    <div id="userFarmLocations">
+                      {farm.farmLocations.length > 0 ? (
+                        <div>
+                          {farm.farmLocations.map((location, index) => {
+                            return (
+                              <div
+                                id="farmLocationDetails"
+                                key={Date.now() + Math.random() * 368}
+                              >
+                                <strong>Location {index + 1}</strong>
+                                {location.streetNumber} {location.streetName}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      ) : (
+                        <div id="noLocations">
+                          <div id="exclaimWarning">!</div> No Locations Found
+                        </div>
+                      )}
+                    </div>
+                    <div id="farmInteractButtons">
+                      <AddLocation
+                        farmId={farm.id}
+                        locationNumber={farm.farmLocations.length + 1}
+                      />
+                    </div>
                   </div>
-                  <div id="farmInteractButtons">
-                  <AddLocation farmId={farm.id} locationNumber={farm.farmLocations.length + 1} />
-                </div>
-                </div>
-              </SingleFarm>
-            );
-          })}
-        </div>
-      ) : (
-        <div>No Owned Farms</div>
-      )}
+                </SingleFarm>
+              );
+            })}
+          </div>
+        ) : (
+          <div>No Owned Farms</div>
+        )}
+      </OwnedFarms>
       <button id="btncust" onClick={() => setAddOpen(!addOpen)}>
         Add Farm
       </button>
       <div id={addOpen === true ? "opened" : "closed"}>
-        <AddFarm id={"add"} />
+        <AddFarm id={"add"} pullFarms={pullFarms} />
       </div>
-    </OwnedFarms>
+    </FarmListDiv>
   );
 }
