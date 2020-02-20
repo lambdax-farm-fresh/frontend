@@ -68,3 +68,5 @@ export const DEL_LOCATION = 'DEL_LOCATION';
 export const FAIL_DEL_LOCATION = 'FAIL_DEL_LOCATION';
 export const SUCC_DEL_LOCATION = 'SUCC_DEL_LOCATION';
 
+export const GET_POSITION = 'GET_POSITION';
+

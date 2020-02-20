@@ -1,7 +1,8 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect} from "react";
 import { Redirect } from "react-router-dom";
 
 import UserContext from "../../../context/user/UserContext";
+
 
 import styled from "styled-components";
 
@@ -41,6 +42,14 @@ const UDash = styled.div`
       }
     }
 
+      button {
+        background-color: green;
+        color: white;
+        padding: 8px;
+        border-radius: 4px;
+      }
+
+
     #user-dash-settings {
       button {
         background-color: green;
@@ -59,26 +68,21 @@ export default function UserDash() {
     Users.makeFarmer(Users.state.user.id);
   };
 
-  let coord = null;
 
-  const getLocation = () => {
+  //sets up useState hook to store location
+  const [loc, setLoc] = useState({});
+  const getLocation = () => { //uses a callback to get the location from the browser
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(locationCallback);
     } else {
       alert("Geolocation is not supported by this browser.");
     }
   }
-
-  const locationCallback = (location) => {
-    coord = location.coords;
-
-    console.log("ok")
-    console.log(coord.latitude, coord.longitude)
+  const locationCallback = (location) => { //sets the state based on the browser location
+    setLoc(location.coords); 
   }
 
-  let location = getLocation()
 
-  // console.log("loc", location);
 
   return (
     <>
@@ -92,10 +96,9 @@ export default function UserDash() {
               </div>
               <div id="lowerDetails">
                 <p>Email: {Users.state.user.email}</p>
-                {/* <p>lat: {Users.state.user.lat}</p>
-                <p>lon: {Users.state.user.lon}</p> */}
-                <p>lat: {coord ? coord.latitude : 'a'}</p>
-                <p>lon: {coord ? coord.longitude : 'a'}</p>
+                <button onClick={() => getLocation()}>get my location</button>
+                <p>lat: {loc ? loc.latitude: "location not available"}</p>
+                <p>lon: {loc ? loc.longitude: "location not available"}</p>
                 <p>rankrole: {Users.state.user.rankrole}</p>
               </div>
             </div>
@@ -111,4 +114,6 @@ export default function UserDash() {
       )}
     </>
   );
+
+
 }
