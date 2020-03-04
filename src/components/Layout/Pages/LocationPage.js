@@ -16,9 +16,11 @@ export default function LocationPage(props) {
         ? "http://localhost:8181"
         : "https://farm-fresh-produce.herokuapp.com";
 
-    axios.get(`${address}/graphQl`, {
-        params: {
-          query: `
+    if (!locationObj) {
+      axios
+        .get(`${address}/graphQl`, {
+          params: {
+            query: `
             {
               location(id: ${params.locationId}) {
                 id
@@ -34,19 +36,20 @@ export default function LocationPage(props) {
               }
             }
           `
-        },
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*"
-        }
-      })
-      .then(res => {
-        console.log(res);
-        setLocationObj(res.data.data.location)
-        Farms.getFarm(locationObj.farmId);
-      })
-      .catch(err => setLocationObj({ streetNumber: "Not Found" }));
-  }, []);
+          },
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+          }
+        })
+        .then(res => {
+          console.log(res);
+          setLocationObj(res.data.data.location);
+          Farms.getFarm(locationObj.farmId);
+        })
+        .catch(err => setLocationObj({ streetNumber: "Not Found" }));
+    }
+  }, [Farms, locationObj, props]);
 
   return (
     <div>

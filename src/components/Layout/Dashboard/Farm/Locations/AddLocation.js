@@ -1,11 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import FarmContext from "../../../../../context/farm/FarmContext";
 import LocationContext from "../../../../../context/location/LocationContext";
 import UserContext from "../../../../../context/user/UserContext";
 
 const AddLocationDiv = styled.div`
-
   #addLocationButton {
     width: 100%;
     display: flex;
@@ -32,20 +31,21 @@ const AddLocationDiv = styled.div`
     justify-content: center;
     align-items: center;
     left: -50;
-    background-color: rgba(255,255,255,.9);
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 8px;
-    border: 1px solid rgba(0,0,0,0.4);
+    border: 1px solid rgba(0, 0, 0, 0.4);
     border-radius: 4px;
 
     label {
       text-align: left;
       width: 100%;
-      font-size: .9em;
+      font-size: 0.9em;
     }
 
-    input, button {
+    input,
+    button {
       padding: 4px;
-      border: 1px solid rgba(0,0,0,0.4);
+      border: 1px solid rgba(0, 0, 0, 0.4);
       margin: 4px 0px;
       border-radius: 4px;
     }
@@ -76,7 +76,7 @@ export default function AddLocation(props) {
   var [countryCode, setCountryCode] = useState("");
   var [zip, setZip] = useState("");
 
-  const addLocationToFarm = async (e) => {
+  const addLocationToFarm = async e => {
     e.preventDefault();
     const locationObj = {
       id: props.farmId.toString() + "-" + props.locationNumber,
@@ -89,7 +89,7 @@ export default function AddLocation(props) {
       state: state,
       countryCode: countryCode,
       zip: zip
-    }
+    };
 
     console.log(locationObj);
     Locations.addLocation(locationObj);
@@ -108,23 +108,48 @@ export default function AddLocation(props) {
   return (
     <AddLocationDiv>
       <div id="addLocationButton">
-        <button id={addLoca ? "redx" : "open"} onClick={() => setAddLoca(!addLoca)}>{addLoca ? "x" : "Add Location"}</button>
+        <button
+          id={addLoca ? "redx" : "open"}
+          onClick={() => setAddLoca(!addLoca)}
+        >
+          {addLoca ? "x" : "Add Location"}
+        </button>
       </div>
-      <form onSubmit={addLocationToFarm} id={addLoca ? 'open' : 'close'}>
+      <form onSubmit={addLocationToFarm} id={addLoca ? "open" : "close"}>
         <label>Lat</label>
         <input type="text" value={lat} onChange={e => setLat(e.target.value)} />
         <label>Lon</label>
         <input type="text" value={lon} onChange={e => setLon(e.target.value)} />
         <label>Street Number</label>
-        <input type="text" value={streetNumber} onChange={e => setStreetNumber(e.target.value)} />
+        <input
+          type="text"
+          value={streetNumber}
+          onChange={e => setStreetNumber(e.target.value)}
+        />
         <label>Street Name</label>
-        <input type="text" value={streetName} onChange={e => setStreetName(e.target.value)} />
+        <input
+          type="text"
+          value={streetName}
+          onChange={e => setStreetName(e.target.value)}
+        />
         <label>City</label>
-        <input type="text" value={city} onChange={e => setCity(e.target.value)} />
+        <input
+          type="text"
+          value={city}
+          onChange={e => setCity(e.target.value)}
+        />
         <label>State</label>
-        <input type="text" value={state} onChange={e => setState(e.target.value)} />
+        <input
+          type="text"
+          value={state}
+          onChange={e => setState(e.target.value)}
+        />
         <label>County Code</label>
-        <input type="text" value={countryCode} onChange={e => setCountryCode(e.target.value)} />
+        <input
+          type="text"
+          value={countryCode}
+          onChange={e => setCountryCode(e.target.value)}
+        />
         <label>Zip</label>
         <input type="text" value={zip} onChange={e => setZip(e.target.value)} />
         <button>Add Location</button>

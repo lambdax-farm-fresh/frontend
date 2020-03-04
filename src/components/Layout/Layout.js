@@ -2,7 +2,6 @@ import React, { useEffect, useContext } from "react";
 import { Switch, Route } from "react-router-dom";
 import PrivateRoute from "../PrivateRoute";
 
-import firebase from "../../firebase/firebase";
 import "firebase/auth";
 
 import Navbar from "./Navbar/Navbar";
@@ -30,29 +29,29 @@ const Layout = props => {
   const Users = useContext(UserContext);
 
   useEffect(() => {
-    if(!!currentUser && !Users.state.user) {
+    if (!!currentUser && !Users.state.user) {
       Users.getUser(currentUser.uid);
     }
-  }, [])
+  }, [Users, currentUser]);
 
   return (
-      <LayoutFull>
-        <Navbar />
-        <LayoutHold>
-          <Switch>
-            <Route exact path="/" component={HomeDash} />
-            <Route exact path="/emailreg" component={EmailReg} />
-            <Route exact path="/emaillog" component={EmailLog} />
-            <PrivateRoute exact path="/userdash" component={UserDash} />
-            <PrivateRoute exact path="/farmerdash" component={FarmDash} />
-            <Route exact path="/farm/:id" component={FarmPage} />
-            <Route exact path="/location/:locationId" component={LocationPage} />
-            <Route>
-              <h2>404</h2>
-            </Route>
-          </Switch>
-        </LayoutHold>
-      </LayoutFull>
+    <LayoutFull>
+      <Navbar />
+      <LayoutHold>
+        <Switch>
+          <Route exact path="/" component={HomeDash} />
+          <Route exact path="/emailreg" component={EmailReg} />
+          <Route exact path="/emaillog" component={EmailLog} />
+          <PrivateRoute exact path="/userdash" component={UserDash} />
+          <PrivateRoute exact path="/farmerdash" component={FarmDash} />
+          <Route exact path="/farm/:id" component={FarmPage} />
+          <Route exact path="/location/:locationId" component={LocationPage} />
+          <Route>
+            <h2>404</h2>
+          </Route>
+        </Switch>
+      </LayoutHold>
+    </LayoutFull>
   );
 };
 

@@ -14,7 +14,8 @@ const AddFarmMain = styled.form`
   padding: 12px;
   margin: 4px;
   border-radius: 4px;
-  max-width: 420px;
+  max-width: 550px;
+  min-width: 475px;
 
   label {
     padding: 10px 0px;
@@ -51,6 +52,7 @@ export default function AddFarm(props) {
       Farms.addFarm(farmObj);
       Farms.getOwnedFarms(Users.state.user.id);
       setFarmName("");
+      props.pullFarms();
     } catch (err) {
       console.log(err);
     }

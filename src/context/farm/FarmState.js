@@ -62,13 +62,14 @@ const FarmState = props => {
       .catch(err => dispatch({ type: FAIL_GET_FARMS, payload: err }));
   };
 
-  const getFarm = (id) => {
+  const getFarm = id => {
     dispatch({ type: GET_FARM });
     Axios.get(`${address}/graphQl`, {
       params: {
         query: `
         {
           farm(id: ${id}) {
+            id
             farmName
             farmLocations {
               id
@@ -91,9 +92,9 @@ const FarmState = props => {
       .catch(err => dispatch({ type: FAIL_GET_FARM, payload: err }));
   };
 
-  const getOwnedFarms = (uid) => {
+  const getOwnedFarms = async uid => {
     dispatch({ type: GET_OWNED_FARMS });
-    Axios.get(`${address}/graphQl`, {
+    await Axios.get(`${address}/graphQl`, {
       params: {
         query: `
           {
@@ -120,7 +121,7 @@ const FarmState = props => {
     })
       .then(res => dispatch({ type: SUCC_OWNED_FARMS, payload: res.data }))
       .catch(err => dispatch({ type: FAIL_OWNED_FARMS, payload: err }));
-  }
+  };
 
   const addFarm = farmObj => {
     dispatch({ type: ADD_FARM });
