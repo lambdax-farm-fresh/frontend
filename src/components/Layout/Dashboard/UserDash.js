@@ -68,21 +68,28 @@ export default function UserDash() {
     Users.makeFarmer(Users.state.user.id);
   };
 
-
+  
   //sets up useState hook to store location
   const [loc, setLoc] = useState({});
-  const getLocation = () => { //uses a callback to get the location from the browser
+
+  //uses a callback to get the location from the browser
+  const getLocation = () => { 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(locationCallback);
-    } else {
+    } 
+    else {
       alert("Geolocation is not supported by this browser.");
     }
   }
-  const locationCallback = (location) => { //sets the state based on the browser location
+  //sets the state based on the browser location
+  const locationCallback = (location) => { 
     setLoc(location.coords); 
   }
-
-
+  
+  //calling get location without useEffect triggers it only after refresh (loses state when navigating between components), calling with triggers it whenever the component is rendered
+  useEffect(() => { 
+    getLocation();
+  }, []); //passing an empty argument at the end here prevents an infinite loop of updates and rerenders
 
   return (
     <>
@@ -96,9 +103,8 @@ export default function UserDash() {
               </div>
               <div id="lowerDetails">
                 <p>Email: {Users.state.user.email}</p>
-                <button onClick={() => getLocation()}>get my location</button>
                 <p>lat: {loc ? loc.latitude: "location not available"}</p>
-                <p>lon: {loc ? loc.longitude: "location not available"}</p>
+                <p>lon: {loc ?  loc.longitude: "location not available"}</p>
                 <p>rankrole: {Users.state.user.rankrole}</p>
               </div>
             </div>
