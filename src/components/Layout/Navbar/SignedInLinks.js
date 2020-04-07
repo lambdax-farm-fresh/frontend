@@ -15,7 +15,7 @@ const SignedInLinks = () => {
       Users.getUser(currentUser.uid 
         );
     }
-  }, [])
+  }, [Users, currentUser.uid])
 
   const SignOut = () => {
     firebase
