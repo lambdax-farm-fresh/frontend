@@ -1,6 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect} from "react";
+import { Redirect } from "react-router-dom";
+
 
 import UserContext from "../../../context/user/UserContext";
+
 
 import styled from "styled-components";
 
@@ -40,6 +43,14 @@ const UDash = styled.div`
       }
     }
 
+      button {
+        background-color: green;
+        color: white;
+        padding: 8px;
+        border-radius: 4px;
+      }
+
+
     #user-dash-settings {
       button {
         background-color: green;
@@ -58,6 +69,29 @@ export default function UserDash() {
     Users.makeFarmer(Users.state.user.id);
   };
 
+  
+  //sets up useState hook to store location
+  const [loc, setLoc] = useState({});
+
+  //uses a callback to get the location from the browser
+  const getLocation = () => { 
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(locationCallback);
+    } 
+    else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  }
+  //sets the state based on the browser location
+  const locationCallback = (location) => { 
+    setLoc(location.coords); 
+  }
+  
+  //calling get location without useEffect triggers it only after refresh (loses state when navigating between components), calling with triggers it whenever the component is rendered
+  useEffect(() => { 
+    getLocation();
+  }, []); //passing an empty argument at the end here prevents an infinite loop of updates and rerenders
+
   return (
     <>
       {Users.state.user !== null || undefined ? (
@@ -70,8 +104,8 @@ export default function UserDash() {
               </div>
               <div id="lowerDetails">
                 <p>Email: {Users.state.user.email}</p>
-                <p>lat: {Users.state.user.lat}</p>
-                <p>lon: {Users.state.user.lon}</p>
+                <p>lat: {loc ? loc.latitude: "location not available"}</p>
+                <p>lon: {loc ?  loc.longitude: "location not available"}</p>
                 <p>rankrole: {Users.state.user.rankrole}</p>
               </div>
             </div>
@@ -87,4 +121,6 @@ export default function UserDash() {
       )}
     </>
   );
+
+
 }
